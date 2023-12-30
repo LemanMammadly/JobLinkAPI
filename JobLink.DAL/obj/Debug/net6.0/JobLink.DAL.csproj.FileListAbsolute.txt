@@ -1,0 +1,17 @@
+/Users/imac/Desktop/JobLink/JobLink.DAL/bin/Debug/net6.0/JobLink.DAL.deps.json
+/Users/imac/Desktop/JobLink/JobLink.DAL/bin/Debug/net6.0/JobLink.DAL.dll
+/Users/imac/Desktop/JobLink/JobLink.DAL/bin/Debug/net6.0/ref/JobLink.DAL.dll
+/Users/imac/Desktop/JobLink/JobLink.DAL/bin/Debug/net6.0/JobLink.DAL.pdb
+/Users/imac/Desktop/JobLink/JobLink.DAL/bin/Debug/net6.0/JobLink.Core.dll
+/Users/imac/Desktop/JobLink/JobLink.DAL/bin/Debug/net6.0/JobLink.Core.pdb
+/Users/imac/Desktop/JobLink/JobLink.DAL/obj/Debug/net6.0/JobLink.DAL.csproj.AssemblyReference.cache
+/Users/imac/Desktop/JobLink/JobLink.DAL/obj/Debug/net6.0/JobLink.DAL.GeneratedMSBuildEditorConfig.editorconfig
+/Users/imac/Desktop/JobLink/JobLink.DAL/obj/Debug/net6.0/JobLink.DAL.AssemblyInfoInputs.cache
+/Users/imac/Desktop/JobLink/JobLink.DAL/obj/Debug/net6.0/JobLink.DAL.AssemblyInfo.cs
+/Users/imac/Desktop/JobLink/JobLink.DAL/obj/Debug/net6.0/JobLink.DAL.csproj.CoreCompileInputs.cache
+/Users/imac/Desktop/JobLink/JobLink.DAL/obj/Debug/net6.0/JobLink.DAL.csproj.CopyComplete
+/Users/imac/Desktop/JobLink/JobLink.DAL/obj/Debug/net6.0/JobLink.DAL.dll
+/Users/imac/Desktop/JobLink/JobLink.DAL/obj/Debug/net6.0/ref/JobLink.DAL.dll
+/Users/imac/Desktop/JobLink/JobLink.DAL/obj/Debug/net6.0/JobLink.DAL.pdb
+/Users/imac/Desktop/JobLink/JobLink.DAL/bin/Debug/net6.0/JobLink.DAL.runtimeconfig.json
+/Users/imac/Desktop/JobLink/JobLink.DAL/obj/Debug/net6.0/JobLink.DAL.genruntimeconfig.cache

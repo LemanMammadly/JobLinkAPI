@@ -1,0 +1,15 @@
+/Users/imac/Desktop/JobLink/JobLink.Business/bin/Debug/net6.0/JobLink.Business.deps.json
+/Users/imac/Desktop/JobLink/JobLink.Business/bin/Debug/net6.0/JobLink.Business.dll
+/Users/imac/Desktop/JobLink/JobLink.Business/bin/Debug/net6.0/ref/JobLink.Business.dll
+/Users/imac/Desktop/JobLink/JobLink.Business/bin/Debug/net6.0/JobLink.Business.pdb
+/Users/imac/Desktop/JobLink/JobLink.Business/bin/Debug/net6.0/JobLink.DAL.dll
+/Users/imac/Desktop/JobLink/JobLink.Business/bin/Debug/net6.0/JobLink.DAL.pdb
+/Users/imac/Desktop/JobLink/JobLink.Business/obj/Debug/net6.0/JobLink.Business.csproj.AssemblyReference.cache
+/Users/imac/Desktop/JobLink/JobLink.Business/obj/Debug/net6.0/JobLink.Business.GeneratedMSBuildEditorConfig.editorconfig
+/Users/imac/Desktop/JobLink/JobLink.Business/obj/Debug/net6.0/JobLink.Business.AssemblyInfoInputs.cache
+/Users/imac/Desktop/JobLink/JobLink.Business/obj/Debug/net6.0/JobLink.Business.AssemblyInfo.cs
+/Users/imac/Desktop/JobLink/JobLink.Business/obj/Debug/net6.0/JobLink.Business.csproj.CoreCompileInputs.cache
+/Users/imac/Desktop/JobLink/JobLink.Business/obj/Debug/net6.0/JobLink.Business.csproj.CopyComplete
+/Users/imac/Desktop/JobLink/JobLink.Business/obj/Debug/net6.0/JobLink.Business.dll
+/Users/imac/Desktop/JobLink/JobLink.Business/obj/Debug/net6.0/ref/JobLink.Business.dll
+/Users/imac/Desktop/JobLink/JobLink.Business/obj/Debug/net6.0/JobLink.Business.pdb

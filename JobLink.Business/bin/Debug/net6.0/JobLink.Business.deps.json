@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "JobLink.Business/1.0.0": {
+        "dependencies": {
+          "JobLink.DAL": "1.0.0"
+        },
+        "runtime": {
+          "JobLink.Business.dll": {}
+        }
+      },
+      "JobLink.DAL/1.0.0": {
+        "dependencies": {
+          "JobLink.Core": "1.0.0"
+        },
+        "runtime": {
+          "JobLink.DAL.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "JobLink.Business/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "JobLink.DAL/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

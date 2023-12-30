@@ -1,26 +1,26 @@
 ﻿<Properties StartupConfiguration="{2B17C4CB-5290-471D-A402-C8627FD2E3A0}|Default">
-  <MonoDevelop.Ide.ItemProperties.JobLink.API FirstBuild="True" PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.JobLink.DAL FirstBuild="True" />
-  <MonoDevelop.Ide.ItemProperties.JobLink.Core FirstBuild="True" />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="JobLink.API/Program.cs">
+  <MonoDevelop.Ide.ItemProperties.JobLink.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="JobLink.DAL/Contexts/AppDbContext.cs">
     <Files>
-      <File FileName="JobLink.API/Program.cs" Line="12" Column="29" />
+      <File FileName="JobLink.API/Program.cs" Line="1" Column="1" />
+      <File FileName="JobLink.DAL/Contexts/AppDbContext.cs" Line="10" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="JobLink" expanded="True">
-            <Node name="JobLink.API" expanded="True" />
+            <Node name="JobLink.DAL">
+              <Node name="Contexts" expanded="True" />
+            </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.JobLink.Business FirstBuild="True" />
-  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
 </Properties>

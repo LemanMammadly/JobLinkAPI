@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "ZiLyO7gAK8x0OihDX5suMWQ+es9PVG+02R5lt3yCQXc=",
+  "Source": "JobLink.API",
+  "BasePath": "_content/JobLink.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

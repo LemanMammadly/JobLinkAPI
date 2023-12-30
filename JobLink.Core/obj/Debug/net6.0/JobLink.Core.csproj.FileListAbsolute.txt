@@ -1,0 +1,12 @@
+/Users/imac/Desktop/JobLink/JobLink.Core/bin/Debug/net6.0/JobLink.Core.deps.json
+/Users/imac/Desktop/JobLink/JobLink.Core/bin/Debug/net6.0/JobLink.Core.dll
+/Users/imac/Desktop/JobLink/JobLink.Core/bin/Debug/net6.0/ref/JobLink.Core.dll
+/Users/imac/Desktop/JobLink/JobLink.Core/bin/Debug/net6.0/JobLink.Core.pdb
+/Users/imac/Desktop/JobLink/JobLink.Core/obj/Debug/net6.0/JobLink.Core.csproj.AssemblyReference.cache
+/Users/imac/Desktop/JobLink/JobLink.Core/obj/Debug/net6.0/JobLink.Core.GeneratedMSBuildEditorConfig.editorconfig
+/Users/imac/Desktop/JobLink/JobLink.Core/obj/Debug/net6.0/JobLink.Core.AssemblyInfoInputs.cache
+/Users/imac/Desktop/JobLink/JobLink.Core/obj/Debug/net6.0/JobLink.Core.AssemblyInfo.cs
+/Users/imac/Desktop/JobLink/JobLink.Core/obj/Debug/net6.0/JobLink.Core.csproj.CoreCompileInputs.cache
+/Users/imac/Desktop/JobLink/JobLink.Core/obj/Debug/net6.0/JobLink.Core.dll
+/Users/imac/Desktop/JobLink/JobLink.Core/obj/Debug/net6.0/ref/JobLink.Core.dll
+/Users/imac/Desktop/JobLink/JobLink.Core/obj/Debug/net6.0/JobLink.Core.pdb
