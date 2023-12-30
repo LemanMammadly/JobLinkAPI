@@ -13,3 +13,5 @@
 /Users/imac/Desktop/JobLink/JobLink.Business/obj/Debug/net6.0/JobLink.Business.dll
 /Users/imac/Desktop/JobLink/JobLink.Business/obj/Debug/net6.0/ref/JobLink.Business.dll
 /Users/imac/Desktop/JobLink/JobLink.Business/obj/Debug/net6.0/JobLink.Business.pdb
+/Users/imac/Desktop/JobLink/JobLink.Business/bin/Debug/net6.0/JobLink.Core.dll
+/Users/imac/Desktop/JobLink/JobLink.Business/bin/Debug/net6.0/JobLink.Core.pdb
