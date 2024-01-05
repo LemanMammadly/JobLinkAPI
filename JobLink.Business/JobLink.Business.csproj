@@ -11,8 +11,29 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="Dtos\" />
+    <None Remove="Dtos\AppUserDtos\" />
+    <None Remove="Profiles\" />
+    <None Remove="Services\" />
+    <None Remove="Services\Interfaces\" />
+    <None Remove="Services\Implements\" />
+    <None Remove="Exceptions\" />
+    <None Remove="Exceptions\AppUserExceptions\" />
+    <None Remove="Exceptions\Common\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dtos\" />
+    <Folder Include="Dtos\AppUserDtos\" />
+    <Folder Include="Profiles\" />
+    <Folder Include="Services\" />
+    <Folder Include="Services\Interfaces\" />
+    <Folder Include="Services\Implements\" />
+    <Folder Include="Exceptions\" />
+    <Folder Include="Exceptions\AppUserExceptions\" />
+    <Folder Include="Exceptions\Common\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.9.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
   </ItemGroup>
 </Project>

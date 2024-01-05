@@ -1,22 +1,39 @@
 ﻿<Properties StartupConfiguration="{2B17C4CB-5290-471D-A402-C8627FD2E3A0}|Default">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.ItemProperties.JobLink.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workbench ActiveDocument="JobLink.Business/Dtos/AppUserDtos/RegisterDto.cs">
+    <Files>
+      <File FileName="JobLink.Business/Services/Implements/AppUserService.cs" />
+      <File FileName="JobLink.Business/ServiceRegistration.cs" />
+      <File FileName="JobLink.API/Program.cs" Line="66" Column="1" />
+      <File FileName="JobLink.API/Controllers/AppUserControllers.cs" Line="25" Column="59" />
+      <File FileName="JobLink.Business/Dtos/AppUserDtos/RegisterDto.cs" Line="35" Column="238" />
+    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="JobLink" expanded="True">
-            <Node name="JobLink.Business" expanded="True">
-              <Node name="Dtos" selected="True" />
+            <Node name="JobLink.API">
+              <Node name="Controllers" expanded="True" />
+            </Node>
+            <Node name="JobLink.Business">
+              <Node name="Dtos" expanded="True">
+                <Node name="AppUserDtos" expanded="True">
+                  <Node name="RegisterDto.cs" selected="True" />
+                </Node>
+              </Node>
+              <Node name="Services" expanded="True">
+                <Node name="Implements" expanded="True" />
+              </Node>
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MultiItemStartupConfigurations />
 </Properties>

@@ -1,0 +1,14 @@
+﻿using AutoMapper;
+using JobLink.Business.Dtos.AppUserDtos;
+using JobLink.Core.Entities;
+
+namespace JobLink.Business.Profiles;
+
+public class AppUserMappingProfile:Profile
+{
+    public AppUserMappingProfile()
+    {
+        CreateMap<RegisterDto, AppUser>().ReverseMap();
+    }
+}
+
