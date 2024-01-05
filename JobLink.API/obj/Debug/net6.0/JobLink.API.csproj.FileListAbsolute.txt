@@ -77,3 +77,7 @@
 /Users/imac/Desktop/JobLink/JobLink.API/bin/Debug/net6.0/FluentValidation.dll
 /Users/imac/Desktop/JobLink/JobLink.API/bin/Debug/net6.0/FluentValidation.AspNetCore.dll
 /Users/imac/Desktop/JobLink/JobLink.API/bin/Debug/net6.0/FluentValidation.DependencyInjectionExtensions.dll
+/Users/imac/Desktop/JobLink/JobLink.API/bin/Debug/net6.0/MailKit.dll
+/Users/imac/Desktop/JobLink/JobLink.API/bin/Debug/net6.0/MimeKit.dll
+/Users/imac/Desktop/JobLink/JobLink.API/bin/Debug/net6.0/NETCore.MailKit.dll
+/Users/imac/Desktop/JobLink/JobLink.API/bin/Debug/net6.0/BouncyCastle.Crypto.dll

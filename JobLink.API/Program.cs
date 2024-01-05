@@ -8,8 +8,11 @@ using JobLink.Business;
 using JobLink.Business.Services.Implements;
 using JobLink.Core.Entities;
 using Microsoft.AspNetCore.Identity;
+using JobLink.Business.ExternalServices.Interfaces;
+using JobLink.Business.ExternalServices.Implements;
 
 var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
 
 // Add services to the container.
 
@@ -34,9 +37,15 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(opt =>
     opt.SignIn.RequireConfirmedEmail = true;
     opt.Lockout.MaxFailedAccessAttempts = 3;
     opt.User.RequireUniqueEmail = true;
-}).AddDefaultTokenProviders()
-.AddEntityFrameworkStores<AppDbContext>()
-.AddSignInManager<SignInManager<AppUser>>();
+}).AddEntityFrameworkStores<AppDbContext>()
+.AddSignInManager<SignInManager<AppUser>>()
+.AddDefaultTokenProviders();
+
+
+var emailConfig = configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>();
+builder.Services.AddSingleton(emailConfig);
+
+builder.Services.AddScoped<IEmailSenderService, EmailSenderService>();
 
 builder.Services.AddAutoMapper(typeof(RegisterDto).Assembly);
 
