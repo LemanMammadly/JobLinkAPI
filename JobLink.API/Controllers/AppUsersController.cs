@@ -63,6 +63,12 @@ namespace JobLink.API.Controllers
             }
             return StatusCode(StatusCodes.Status500InternalServerError);
         }
+
+        [HttpPost("[action]")]
+        public async Task<IActionResult> Login([FromForm]LoginDto dto)
+        {
+            return Ok(await _service.Login(dto));
+        }
     }
 }
 

@@ -22,6 +22,7 @@
     <None Remove="ExternalServices\" />
     <None Remove="ExternalServices\Interfaces\" />
     <None Remove="ExternalServices\Implements\" />
+    <None Remove="Dtos\TokenDtos\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dtos\" />
@@ -36,6 +37,7 @@
     <Folder Include="ExternalServices\" />
     <Folder Include="ExternalServices\Interfaces\" />
     <Folder Include="ExternalServices\Implements\" />
+    <Folder Include="Dtos\TokenDtos\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.9.0" />

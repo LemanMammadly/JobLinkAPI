@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace JobLink.Business.Dtos.AppUserDtos;
 
-public class RegisterDto
+public record RegisterDto
 {
     public string Name { get; set; }
     public string Surname { get; set; }
@@ -41,7 +41,8 @@ public class RegisterDtoValidator:AbstractValidator<RegisterDto>
             }).WithMessage("Please enter valid email");
         RuleFor(r => r.Password)
             .NotEmpty().WithMessage("Password field is not empty")
-            .NotNull().WithMessage("Password field is not null");
+            .NotNull().WithMessage("Password field is not null")
+            .MinimumLength(6).WithMessage("Password length must be equal or great 6");
         RuleFor(r => r.ConfirmPassword)
             .Equal(r => r.Password).WithMessage("Pasword must be same ConfirmPassword");
     }
