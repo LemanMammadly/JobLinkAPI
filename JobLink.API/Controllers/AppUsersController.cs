@@ -28,19 +28,26 @@ namespace JobLink.API.Controllers
             _emailService = emailService;
         }
 
-
         [HttpPost("[action]")]
-        public async Task<IActionResult> Create([FromForm]RegisterDto dto)
+        public async Task<IActionResult> Create([FromForm] RegisterDto dto)
         {
             await _service.Register(dto);
+
             var user = await _userManager.FindByEmailAsync(dto.Email);
             var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-            var confirmationLink = Url.Action("ConfirmEmail", "AppUsers", new { token, email = dto.Email },
-                Request.Scheme);
-            var message = new Message(new string[] { dto.Email! }, "Confirmation email link", confirmationLink!);
+            var confirmationLink = Url.Action("ConfirmEmail", "AppUsers", new { token, email = dto.Email }, Request.Scheme);
+
+            string emailContentTemplate = _emailService.GetEmailConfirmationTemplate("emailConfirmationTemplate.html");
+
+            string emailContent = emailContentTemplate.Replace("{USERNAME}", user.UserName).Replace("{CONFIRMATION_LINK}",
+                confirmationLink);
+
+            var message = new Message(new string[] { dto.Email! }, "Confirmation email link", emailContent);
             _emailService.SendEmail(message);
+
             return StatusCode(StatusCodes.Status201Created);
         }
+
 
         [HttpGet("[action]")]
         public async Task<IActionResult> ConfirmEmail(string token, string email)

@@ -16,6 +16,12 @@ namespace JobLink.Business.ExternalServices.Implements
             _emailConfiguration = emailConfiguration;
         }
 
+        public string GetEmailConfirmationTemplate(string templatePath)
+        {
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", templatePath);
+            return File.ReadAllText(path);
+        }
+
         public void SendEmail(Message message)
         {
             var emailMessage = CreateEmailMessage(message);
@@ -28,7 +34,7 @@ namespace JobLink.Business.ExternalServices.Implements
             emailMessage.From.Add(new MailboxAddress("email", _emailConfiguration.From));
             emailMessage.To.AddRange(message.To);
             emailMessage.Subject = message.Subject;
-            emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Text) { Text = message.Content };
+            emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = message.Content };
 
             return emailMessage;
         }

@@ -1,33 +1,33 @@
 ﻿<Properties StartupConfiguration="{2B17C4CB-5290-471D-A402-C8627FD2E3A0}|Default">
-  <MonoDevelop.Ide.ItemProperties.JobLink.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.JobLink.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="JobLink.Business/ExternalServices/Implements/EmailSenderService.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="JobLink.API/Controllers/AppUsersController.cs">
     <Files>
-      <File FileName="JobLink.Business/Services/Implements/AppUserService.cs" />
+      <File FileName="JobLink.Business/Services/Implements/AppUserService.cs" Line="15" Column="1" />
       <File FileName="JobLink.Business/ExternalServices/Interfaces/IEmailSenderService.cs" />
-      <File FileName="JobLink.Business/ExternalServices/Implements/EmailSenderService.cs" Line="20" Column="10" />
-      <File FileName="JobLink.API/Controllers/AppUserControllers.cs" />
+      <File FileName="JobLink.Business/ExternalServices/Implements/EmailSenderService.cs" />
       <File FileName="JobLink.Core/Entities/Message.cs" />
       <File FileName="JobLink.Core/Entities/EmailConfiguration.cs" />
+      <File FileName="JobLink.API/Program.cs" />
+      <File FileName="JobLink.API/appsettings.json" />
+      <File FileName="JobLink.API/Controllers/AppUsersController.cs" Line="40" Column="39" />
+      <File FileName="JobLink.API/wwwroot/emailConfirmationTemplate.html" Line="337" Column="8" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="JobLink" expanded="True">
-            <Node name="JobLink.API" expanded="True">
-              <Node name="Controllers" expanded="True" />
+            <Node name="JobLink.API">
+              <Node name="Controllers" expanded="True">
+                <Node name="AppUsersController.cs" selected="True" />
+              </Node>
+              <Node name="wwwroot" expanded="True" />
             </Node>
             <Node name="JobLink.Business" expanded="True">
-              <Node name="ExternalServices" expanded="True">
-                <Node name="Implements" expanded="True">
-                  <Node name="EmailSenderService.cs" selected="True" />
-                </Node>
-              </Node>
               <Node name="Services" expanded="True">
                 <Node name="Implements" expanded="True" />
               </Node>
@@ -40,4 +40,5 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

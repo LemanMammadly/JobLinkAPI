@@ -1,11 +1,37 @@
 {
   "Version": 1,
-  "Hash": "ZiLyO7gAK8x0OihDX5suMWQ+es9PVG+02R5lt3yCQXc=",
+  "Hash": "cIv5CyA+RV3wHDed7ry7MKSlhUpn6JlSs1y5xPS4aQw=",
   "Source": "JobLink.API",
   "BasePath": "_content/JobLink.API",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "JobLink.API/wwwroot",
+      "Source": "JobLink.API",
+      "ContentRoot": "/Users/imac/Desktop/JobLink/JobLink.API/wwwroot/",
+      "BasePath": "_content/JobLink.API",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "/Users/imac/Desktop/JobLink/JobLink.API/wwwroot/emailConfirmationTemplate.html",
+      "SourceId": "JobLink.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/imac/Desktop/JobLink/JobLink.API/wwwroot/",
+      "BasePath": "_content/JobLink.API",
+      "RelativePath": "emailConfirmationTemplate.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/emailConfirmationTemplate.html"
+    }
+  ]
 }

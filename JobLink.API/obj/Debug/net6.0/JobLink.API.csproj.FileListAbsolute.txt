@@ -81,3 +81,4 @@
 /Users/imac/Desktop/JobLink/JobLink.API/bin/Debug/net6.0/MimeKit.dll
 /Users/imac/Desktop/JobLink/JobLink.API/bin/Debug/net6.0/NETCore.MailKit.dll
 /Users/imac/Desktop/JobLink/JobLink.API/bin/Debug/net6.0/BouncyCastle.Crypto.dll
+/Users/imac/Desktop/JobLink/JobLink.API/bin/Debug/net6.0/JobLink.API.staticwebassets.runtime.json
