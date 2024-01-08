@@ -3,20 +3,18 @@ using FluentValidation;
 
 namespace JobLink.Business.Dtos.AppUserDtos;
 
-public record RegisterDto
+public record UpdateDto
 {
     public string Name { get; set; }
     public string Surname { get; set; }
     public string UserName { get; set; }
     public string Email { get; set; }
-    public string Password { get; set; }
-    public string ConfirmPassword { get; set; }
 }
 
 
-public class RegisterDtoValidator:AbstractValidator<RegisterDto>
+public class UpdateDtoValidator:AbstractValidator<UpdateDto>
 {
-    public RegisterDtoValidator()
+    public UpdateDtoValidator()
     {
         RuleFor(r => r.Name)
             .NotEmpty().WithMessage("Name field is not empty")
@@ -39,11 +37,5 @@ public class RegisterDtoValidator:AbstractValidator<RegisterDto>
                 var result = regex.Match(u);
                 return result.Success;
             }).WithMessage("Please enter valid email");
-        RuleFor(r => r.Password)
-            .NotEmpty().WithMessage("Password field is not empty")
-            .NotNull().WithMessage("Password field is not null")
-            .MinimumLength(6).WithMessage("Password length must be equal or great 6");
-        RuleFor(r => r.ConfirmPassword)
-            .Equal(r => r.Password).WithMessage("Pasword must be same ConfirmPassword");
     }
 }

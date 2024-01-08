@@ -9,10 +9,13 @@ public class AppDbContext:IdentityDbContext<AppUser>
 {
     public AppDbContext(DbContextOptions<AppDbContext> options):base(options) {}
 
+    public DbSet<EmailToken> EmailTokens { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         base.OnModelCreating(modelBuilder);
     }
 }
+
 

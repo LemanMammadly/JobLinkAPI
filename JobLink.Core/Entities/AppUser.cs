@@ -8,6 +8,7 @@ public class AppUser:IdentityUser
     public string Surname { get; set; }
     public string? RefreshToken { get; set; }
     public DateTime? RefreshTokenExpiresDate { get; set; }
+    public EmailToken? EmailToken { get; set; }
 }
 
 
