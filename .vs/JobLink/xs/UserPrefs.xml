@@ -1,26 +1,17 @@
 ﻿<Properties StartupConfiguration="{2B17C4CB-5290-471D-A402-C8627FD2E3A0}|Default">
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.JobLink.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="JobLink.API/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="JobLink.API/Controllers/AppUsersController.cs">
     <Files>
-      <File FileName="JobLink.Business/Services/Implements/AppUserService.cs" />
-      <File FileName="JobLink.API/Controllers/AppUsersController.cs" />
-      <File FileName="JobLink.Business/ExternalServices/Implements/EmailSenderService.cs" />
-      <File FileName="JobLink.Business/ExternalServices/Implements/TokenService.cs" />
-      <File FileName="JobLink.Business/Services/Interfaces/IAppUserService.cs" />
-      <File FileName="JobLink.API/Program.cs" Line="66" Column="33" />
-      <File FileName="JobLink.Business/ServiceRegistration.cs" />
+      <File FileName="JobLink.API/Controllers/AppUsersController.cs" Line="74" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="JobLink" expanded="True">
-            <Node name="JobLink.API">
-              <Node name="Program.cs" selected="True" />
+            <Node name="JobLink.API" expanded="True">
+              <Node name="Controllers" expanded="True">
+                <Node name="AppUsersController.cs" selected="True" />
+              </Node>
             </Node>
             <Node name="JobLink.Business" expanded="True">
               <Node name="Services" expanded="True">
@@ -32,5 +23,10 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.JobLink.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
 </Properties>

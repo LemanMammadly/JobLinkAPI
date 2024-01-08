@@ -67,6 +67,23 @@ namespace JobLink.API.Controllers
         [HttpPost("[action]")]
         public async Task<IActionResult> Login([FromForm]LoginDto dto)
         {
+            var user = await _userManager.FindByNameAsync(dto.UserName);
+
+            if(user.EmailConfirmed==false)
+            {
+
+                var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                var confirmationLink = Url.Action("ConfirmEmail", "AppUsers", new { token, email = user.Email }, Request.Scheme);
+
+                string emailContentTemplate = _emailService.GetEmailConfirmationTemplate("emailConfirmationTemplate.html");
+                string emailContent = emailContentTemplate.Replace("{USERNAME}", user.UserName).Replace("{CONFIRMATION_LINK}", confirmationLink);
+
+                var message = new Message(new string[] { user.Email! }, "Confirmation email link", emailContent);
+
+                _emailService.SendEmail(message);
+
+            }
+
             return Ok(await _service.Login(dto));
         }
     }
