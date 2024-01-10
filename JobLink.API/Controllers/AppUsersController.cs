@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using JobLink.Business.Dtos.AppUserDtos;
 using JobLink.Business.Exceptions.AppUserExceptions;
@@ -24,13 +25,17 @@ namespace JobLink.API.Controllers
         readonly UserManager<AppUser> _userManager;
         readonly IEmailSenderService _emailService;
         readonly AppDbContext _context;
+        readonly IHttpContextAccessor _httpContextAccessor;
+        readonly string? _userId;
 
-        public AppUsersController(IAppUserService service, UserManager<AppUser> userManager, IEmailSenderService emailService, AppDbContext context)
+        public AppUsersController(IAppUserService service, UserManager<AppUser> userManager, IEmailSenderService emailService, AppDbContext context, IHttpContextAccessor httpContextAccessor)
         {
             _service = service;
             _userManager = userManager;
             _emailService = emailService;
             _context = context;
+            _httpContextAccessor = httpContextAccessor;
+            _userId = _httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         }
 
         [HttpPost("[action]")]
@@ -118,6 +123,42 @@ namespace JobLink.API.Controllers
         public async Task<IActionResult> LoginWithRefreshToken([FromForm]string refreshtoken)
         {
             return Ok(await _service.LoginWithRefreshTokenAsync(refreshtoken));
+        }
+
+        [HttpPut("[action]")]
+        public async Task<IActionResult> Update([FromForm]UpdateDto dto)
+        {
+            var email = await _userManager.Users.AnyAsync(u => u.Email == dto.Email);
+            if (!email)
+            {
+                var user = await _userManager.FindByIdAsync(_userId);
+                user.EmailConfirmed = false;
+                var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                var confirmationLink = Url.Action("ConfirmEmail", "AppUsers", new { token, email = dto.Email }, Request.Scheme);
+                var sendemail = await _context.EmailTokens.SingleOrDefaultAsync(u => u.AppUserId == user.Id);
+                string emailContentTemplate = _emailService.GetEmailConfirmationTemplate("emailConfirmationTemplate.html");
+                string emailContent = emailContentTemplate.Replace("{USERNAME}", dto.UserName).Replace("{CONFIRMATION_LINK}", confirmationLink);
+
+                var message = new Message(new string[] { dto.Email! }, "Confirmation email link", emailContent);
+
+                if (sendemail != null)
+                {
+                    sendemail.Token = token;
+                    sendemail.SendDate = DateTime.UtcNow.AddHours(4);
+                }
+
+                await _context.SaveChangesAsync();
+                _emailService.SendEmail(message);
+            }
+            await _service.UpdateAsync(dto);
+            return Ok();
+        }
+
+        [HttpPatch("[action]")]
+        public async Task<IActionResult> ChangePassword([FromForm]ChangePasswordDto dto)
+        {
+            await _service.ChangePassword(dto);
+            return Ok();
         }
     }
 }

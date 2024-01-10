@@ -1,44 +1,34 @@
 ﻿<Properties StartupConfiguration="{2B17C4CB-5290-471D-A402-C8627FD2E3A0}|Default">
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="JobLink.Business/Services/Interfaces/IAppUserService.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.JobLink.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench ActiveDocument="JobLink.API/Controllers/AppUsersController.cs">
     <Files>
-      <File FileName="JobLink.Business/Services/Interfaces/IAppUserService.cs" Line="1" Column="1" />
-      <File FileName="JobLink.Business/Services/Implements/AppUserService.cs" Line="84" Column="58" />
-      <File FileName="JobLink.Business/Dtos/AppUserDtos/UpdateDto.cs" />
-      <File FileName="JobLink.Business/Profiles/AppUserMappingProfile.cs" />
-      <File FileName="JobLink.Business/Exceptions/AppUserExceptions/AppUserNotFoundException.cs" />
-      <File FileName="JobLink.Business/Exceptions/AppUserExceptions/AppUserUsernameIsAlreadyExistException.cs" />
-      <File FileName="JobLink.Business/Exceptions/AppUserExceptions/AppUserEmailIsAlreadyExistException.cs" />
-      <File FileName="JobLink.Business/Exceptions/AppUserExceptions/AppUserUpdateFailedException.cs" Line="12" Column="40" />
+      <File FileName="JobLink.Business/Services/Implements/AppUserService.cs" Line="20" Column="48" />
+      <File FileName="JobLink.API/Controllers/AppUsersController.cs" Line="137" Column="69" />
+      <File FileName="JobLink.Business/Dtos/AppUserDtos/UpdateDto.cs" Line="9" Column="40" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="JobLink" expanded="True">
-            <Node name="JobLink.API" expanded="True" />
-            <Node name="JobLink.Business">
-              <Node name="Exceptions" expanded="True">
-                <Node name="AppUserExceptions" expanded="True" />
-              </Node>
-              <Node name="Services" expanded="True">
-                <Node name="Implements" expanded="True" />
-                <Node name="Interfaces" expanded="True">
-                  <Node name="IAppUserService.cs" selected="True" />
-                </Node>
+            <Node name="JobLink.API">
+              <Node name="Controllers" expanded="True">
+                <Node name="AppUsersController.cs" selected="True" />
               </Node>
             </Node>
-            <Node name="JobLink.Core" expanded="True">
-              <Node name="Entities" expanded="True" />
+            <Node name="JobLink.Business">
+              <Node name="Services" expanded="True">
+                <Node name="Implements" expanded="True" />
+              </Node>
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.JobLink.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
 </Properties>

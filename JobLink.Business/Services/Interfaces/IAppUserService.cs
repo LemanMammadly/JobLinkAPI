@@ -9,5 +9,6 @@ public interface IAppUserService
     Task<TokenResponseDto> Login(LoginDto dto);
     Task<TokenResponseDto> LoginWithRefreshTokenAsync(string refreshtoken);
     Task UpdateAsync(UpdateDto dto);
+    Task ChangePassword(ChangePasswordDto dto);
 }
 

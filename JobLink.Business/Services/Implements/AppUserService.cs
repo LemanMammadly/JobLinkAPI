@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using System;
+using System.Security.Claims;
 using AutoMapper;
 using JobLink.Business.Dtos.AppUserDtos;
 using JobLink.Business.Dtos.TokenDtos;
@@ -10,6 +11,7 @@ using JobLink.Core.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Org.BouncyCastle.Asn1.Ocsp;
 
 namespace JobLink.Business.Services.Implements;
 
@@ -18,16 +20,39 @@ public class AppUserService : IAppUserService
     readonly UserManager<AppUser> _userManager;
     readonly ITokenService _tokenService;
     readonly IHttpContextAccessor _httpContextAccessor;
-    readonly IMapper _mapper;
     readonly string? _userId;
+    readonly IMapper _mapper;
+    readonly IEmailSenderService _emailService;
 
-    public AppUserService(UserManager<AppUser> userManager, IMapper mapper, ITokenService tokenService, IHttpContextAccessor httpContextAccessor)
+    public AppUserService(UserManager<AppUser> userManager, IMapper mapper, ITokenService tokenService, IHttpContextAccessor httpContextAccessor, IEmailSenderService emailService)
     {
         _userManager = userManager;
         _mapper = mapper;
         _tokenService = tokenService;
         _httpContextAccessor = httpContextAccessor;
         _userId = _httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        _emailService = emailService;
+    }
+
+    public async Task ChangePassword(ChangePasswordDto dto)
+    {
+        if (String.IsNullOrWhiteSpace(_userId)) throw new ArgumentIsNullException();
+        var user = await _userManager.Users.SingleOrDefaultAsync(u => u.Id == _userId);
+        if (user is null) throw new ArgumentIsNullException();
+
+
+
+        var result = await _userManager.ChangePasswordAsync(user, dto.OldPassword, dto.NewPassword);
+
+        if (!result.Succeeded)
+        {
+            string sb = String.Empty;
+            foreach (var item in result.Errors)
+            {
+                sb += item.Description + ' ';
+            }
+            throw new PasswordChangeFailedException();
+        }
     }
 
     public async Task<TokenResponseDto> Login(LoginDto dto)
@@ -78,7 +103,6 @@ public class AppUserService : IAppUserService
 
         if (await _userManager.Users.AnyAsync(a => a.Email == dto.Email && a.Id != _userId)) throw new AppUserEmailIsAlreadyExistException();
         if (await _userManager.Users.AnyAsync(a => a.UserName == dto.UserName && a.Id != _userId)) throw new AppUserUsernameIsAlreadyExistException();
-
 
         var newuser = _mapper.Map(dto, user);
         var result = await _userManager.UpdateAsync(newuser);
