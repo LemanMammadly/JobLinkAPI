@@ -206,6 +206,13 @@ namespace JobLink.API.Controllers
             await _service.AddRoleAsync(dto);
             return NoContent();
         }
+
+        [HttpPost("[action]")]
+        public async Task<IActionResult> RemoveRole([FromForm] RemoveRoleDto dto)
+        {
+            await _service.RemoveRoleAsync(dto);
+            return NoContent();
+        }
     }
 }
 

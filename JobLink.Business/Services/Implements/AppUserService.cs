@@ -205,6 +205,26 @@ public class AppUserService : IAppUserService
 
     }
 
+    public async Task RemoveRoleAsync(RemoveRoleDto dto)
+    {
+        var user = await _userManager.FindByIdAsync(dto.UserId);
+        if (user is null) throw new AppUserNotFoundException();
+
+        var userRole = await _userManager.GetRolesAsync(user);
+
+        IdentityRole identityRole = new IdentityRole()
+        {
+            Name = userRole[0]
+        };
+        var role = await _roleManager.FindByNameAsync(dto.RoleName);
+        if (role is null) throw new RoleIsNotFoundException();
+
+        if (role.Name != identityRole.Name) throw new ThisRoleIsNotOwnThisUserException();
+
+        var result = await _userManager.RemoveFromRoleAsync(user,role.Name);
+        if (!result.Succeeded) throw new AppUserRemoveRoleException();
+    }
+
     public async Task ReverteDeleteAsync(string id)
     {
         if (String.IsNullOrWhiteSpace(id)) throw new ArgumentIsNullException();

@@ -10,6 +10,7 @@ public class AppDbContext:IdentityDbContext<AppUser>
     public AppDbContext(DbContextOptions<AppDbContext> options):base(options) {}
 
     public DbSet<EmailToken> EmailTokens { get; set; }
+    public DbSet<Industry> Industries { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

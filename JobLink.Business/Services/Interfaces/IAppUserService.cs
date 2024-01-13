@@ -13,6 +13,7 @@ public interface IAppUserService
     Task<ICollection<UserWithRoles>> GetAllAsync(bool takeAll);
     Task<UserWithRole> GetByIdAsync(string id, bool takeAll);
     Task AddRoleAsync(AddRoleDto dto);
+    Task RemoveRoleAsync(RemoveRoleDto dto);
     Task SoftDeleteAsync(string id);
     Task ReverteDeleteAsync(string id);
     Task DeleteAsync(string id);

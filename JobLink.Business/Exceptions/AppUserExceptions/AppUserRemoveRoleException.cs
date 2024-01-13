@@ -3,18 +3,18 @@ using Microsoft.AspNetCore.Http;
 
 namespace JobLink.Business.Exceptions.AppUserExceptions;
 
-public class PasswordChangeFailedException : Exception, IBaseException
+public class AppUserRemoveRoleException:Exception,IBaseException
 {
     public int StatusCode => StatusCodes.Status400BadRequest;
 
     public string ErrorMessage { get; }
 
-    public PasswordChangeFailedException()
+    public AppUserRemoveRoleException()
     {
-        ErrorMessage = "Password change failed for some reasons";
+        ErrorMessage = "User remove to role failed for some reasons";
     }
 
-    public PasswordChangeFailedException(string? message) : base(message)
+    public AppUserRemoveRoleException(string? message) : base(message)
     {
         ErrorMessage = message;
     }
