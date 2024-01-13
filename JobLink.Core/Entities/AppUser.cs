@@ -9,7 +9,5 @@ public class AppUser:IdentityUser
     public string? RefreshToken { get; set; }
     public DateTime? RefreshTokenExpiresDate { get; set; }
     public EmailToken? EmailToken { get; set; }
+    public bool IsDeleted { get; set; }
 }
-
-
-

@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Data;
 using System.Security.Claims;
 using AutoMapper;
 using JobLink.Business.Dtos.AppUserDtos;
 using JobLink.Business.Dtos.TokenDtos;
 using JobLink.Business.Exceptions.AppUserExceptions;
 using JobLink.Business.Exceptions.Common;
+using JobLink.Business.Exceptions.RoleExceptions;
 using JobLink.Business.ExternalServices.Interfaces;
 using JobLink.Business.Services.Interfaces;
 using JobLink.Core.Entities;
@@ -23,8 +25,10 @@ public class AppUserService : IAppUserService
     readonly string? _userId;
     readonly IMapper _mapper;
     readonly IEmailSenderService _emailService;
+    readonly SignInManager<AppUser> _signInManager;
+    readonly RoleManager<IdentityRole> _roleManager;
 
-    public AppUserService(UserManager<AppUser> userManager, IMapper mapper, ITokenService tokenService, IHttpContextAccessor httpContextAccessor, IEmailSenderService emailService)
+    public AppUserService(UserManager<AppUser> userManager, IMapper mapper, ITokenService tokenService, IHttpContextAccessor httpContextAccessor, IEmailSenderService emailService, SignInManager<AppUser> signInManager, RoleManager<IdentityRole> roleManager)
     {
         _userManager = userManager;
         _mapper = mapper;
@@ -32,6 +36,20 @@ public class AppUserService : IAppUserService
         _httpContextAccessor = httpContextAccessor;
         _userId = _httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         _emailService = emailService;
+        _signInManager = signInManager;
+        _roleManager = roleManager;
+    }
+
+    public async Task AddRoleAsync(AddRoleDto dto)
+    {
+        var user = await _userManager.FindByIdAsync(dto.UserId);
+        if (user is null) throw new AppUserNotFoundException();
+
+        var role = await _roleManager.FindByNameAsync(dto.RoleName);
+        if (role is null) throw new RoleIsNotFoundException();
+
+        var result = await _userManager.AddToRoleAsync(user, role.Name);
+        if (!result.Succeeded) throw new AppUserAddToRoleFailedException();
     }
 
     public async Task ChangePassword(ChangePasswordDto dto)
@@ -55,6 +73,79 @@ public class AppUserService : IAppUserService
         }
     }
 
+    public async Task DeleteAsync(string id)
+    {
+        if (String.IsNullOrWhiteSpace(id)) throw new ArgumentIsNullException();
+        var user = await _userManager.Users.SingleOrDefaultAsync(u => u.Id == id);
+        if (user is null) throw new AppUserNotFoundException();
+
+        var result = await _userManager.DeleteAsync(user);
+        if(!result.Succeeded)
+        {
+            string sb = String.Empty;
+            foreach (var item in result.Errors)
+            {
+                sb += item.Description + ' ';
+            }
+            throw new AppUserDeleteFailedException();
+        }
+    }
+
+    public async Task<ICollection<UserWithRoles>> GetAllAsync(bool takeAll)
+    {
+        ICollection<UserWithRoles> users = new List<UserWithRoles>();
+
+        if(takeAll)
+        {
+            foreach (var user in await _userManager.Users.ToListAsync())
+            {
+                users.Add(new UserWithRoles {
+                    User = _mapper.Map<UserListItemDto>(user),
+                    Roles = await _userManager.GetRolesAsync(user)
+                });
+            }
+        }
+        else
+        {
+            foreach (var user in await _userManager.Users.Where(u=>u.IsDeleted==false).ToListAsync())
+            {
+                users.Add(new UserWithRoles
+                {
+                    User = _mapper.Map<UserListItemDto>(user),
+                    Roles = await _userManager.GetRolesAsync(user)
+                });
+            }
+        }
+        return users;
+    }
+
+    public async Task<UserWithRole> GetByIdAsync(string id, bool takeAll)
+    {
+        if (String.IsNullOrWhiteSpace(id)) throw new ArgumentIsNullException();
+        UserWithRole user = new UserWithRole();
+        if(takeAll)
+        {
+            var user1 = await _userManager.Users.SingleOrDefaultAsync(u => u.Id == id);
+            if (user1 is null) throw new AppUserNotFoundException();
+            user = new UserWithRole
+            {
+                User = _mapper.Map<UserDetailItemDto>(user1),
+                Roles = await _userManager.GetRolesAsync(user1)
+            };
+        }
+        else
+        {
+            var user1 = await _userManager.Users.SingleOrDefaultAsync(u => u.Id == id && u.IsDeleted==false);
+            if (user1 is null) throw new AppUserNotFoundException();
+            user = new UserWithRole
+            {
+                User = _mapper.Map<UserDetailItemDto>(user1),
+                Roles = await _userManager.GetRolesAsync(user1)
+            };
+        }
+        return user;
+    }
+
     public async Task<TokenResponseDto> Login(LoginDto dto)
     {
         var user = await _userManager.FindByNameAsync(dto.UserName);
@@ -71,6 +162,26 @@ public class AppUserService : IAppUserService
         if (user is null) throw new ArgumentIsNullException();
         if (user.RefreshTokenExpiresDate < DateTime.UtcNow.AddHours(4)) throw new RefreshTokenExpiresIsOldException();
         return _tokenService.CreateAppUserToken(user);
+    }
+
+    public async Task Logout()
+    {
+        if (String.IsNullOrWhiteSpace(_userId)) throw new ArgumentIsNullException();
+        var user = await _userManager.Users.SingleOrDefaultAsync(u => u.Id == _userId);
+        if (user is null) throw new AppUserNotFoundException();
+        await _signInManager.SignOutAsync();
+        user.RefreshToken = null;
+        user.RefreshTokenExpiresDate = null;
+        var result = await _userManager.UpdateAsync(user);
+        if (!result.Succeeded)
+        {
+            string sb = String.Empty;
+            foreach (var item in result.Errors)
+            {
+                sb += item.Description + ' ';
+            }
+            throw new LogoutFailedException("Logout ");
+        }
     }
 
     public async Task Register(RegisterDto dto)
@@ -94,7 +205,25 @@ public class AppUserService : IAppUserService
 
     }
 
-    public async Task UpdateAsync( UpdateDto dto)
+    public async Task ReverteDeleteAsync(string id)
+    {
+        if (String.IsNullOrWhiteSpace(id)) throw new ArgumentIsNullException();
+        var user = await _userManager.Users.SingleOrDefaultAsync(u => u.Id == id);
+        if (user is null) throw new AppUserNotFoundException();
+        user.IsDeleted = false;
+        await _userManager.UpdateAsync(user);
+    }
+
+    public async Task SoftDeleteAsync(string id)
+    {
+        if (String.IsNullOrWhiteSpace(id)) throw new ArgumentIsNullException();
+        var user = await _userManager.Users.SingleOrDefaultAsync(u => u.Id == id);
+        if (user is null) throw new AppUserNotFoundException();
+        user.IsDeleted = true;
+        await _userManager.UpdateAsync(user);
+    }
+
+    public async Task UpdateAsync(UpdateDto dto)
     {
         if (String.IsNullOrWhiteSpace(_userId)) throw new ArgumentIsNullException();
         if (!await _userManager.Users.AnyAsync(u => u.Id == _userId)) throw new AppUserNotFoundException();

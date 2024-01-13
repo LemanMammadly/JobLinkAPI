@@ -66,7 +66,6 @@ namespace JobLink.API.Controllers
             return StatusCode(StatusCodes.Status201Created);
         }
 
-
         [HttpGet("[action]")]
         public async Task<IActionResult> ConfirmEmail(string token, string email)
         {
@@ -160,6 +159,54 @@ namespace JobLink.API.Controllers
             await _service.ChangePassword(dto);
             return Ok();
         }
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> Get()
+        {
+            return Ok(await _service.GetAllAsync(true));
+        }
+
+        [HttpGet("[action]/{id}")]
+        public async Task<IActionResult> Get(string id)
+        {
+            return Ok(await _service.GetByIdAsync(id,true));
+        }
+
+        [HttpPatch("[action]/{id}")]
+        public async Task<IActionResult> SoftDelete(string id)
+        {
+            await _service.SoftDeleteAsync(id);
+            return NoContent();
+        }
+
+        [HttpPatch("[action]/{id}")]
+        public async Task<IActionResult> ReverteDelete(string id)
+        {
+            await _service.ReverteDeleteAsync(id);
+            return NoContent();
+        }
+
+        [HttpDelete("[action]/{id}")]
+        public async Task<IActionResult> Delete(string id)
+        {
+            await _service.DeleteAsync(id);
+            return NoContent();
+        }
+
+        [HttpPost("[action]")]
+        public async Task<IActionResult> Logout()
+        {
+            await _service.Logout();
+            return NoContent();
+        }
+
+        [HttpPost("[action]")]
+        public async Task<IActionResult> AddRole([FromForm]AddRoleDto dto)
+        {
+            await _service.AddRoleAsync(dto);
+            return NoContent();
+        }
     }
 }
+
 

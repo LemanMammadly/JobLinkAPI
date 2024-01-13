@@ -10,6 +10,8 @@ public class AppUserMappingProfile:Profile
     {
         CreateMap<RegisterDto, AppUser>().ReverseMap();
         CreateMap<UpdateDto, AppUser>().ReverseMap();
+        CreateMap<AppUser, UserListItemDto>().ReverseMap();
+        CreateMap<AppUser, UserDetailItemDto>().ReverseMap();
     }
 }
 
