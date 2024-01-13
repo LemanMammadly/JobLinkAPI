@@ -4,11 +4,12 @@
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="JobLink.DAL/Repositories/Interfaces/IRepository.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="JobLink.DAL/Repositories/Implements/Repository.cs">
     <Files>
       <File FileName="JobLink.Core/Entities/Industry.cs" />
       <File FileName="JobLink.DAL/Configurations/IndustryConfiguration.cs" />
-      <File FileName="JobLink.DAL/Repositories/Interfaces/IRepository.cs" Line="18" Column="1" />
+      <File FileName="JobLink.DAL/Repositories/Interfaces/IRepository.cs" />
+      <File FileName="JobLink.DAL/Repositories/Implements/Repository.cs" Line="6" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -17,10 +18,10 @@
             <Node name="JobLink.Core" expanded="True">
               <Node name="Entities" expanded="True" />
             </Node>
-            <Node name="JobLink.DAL">
+            <Node name="JobLink.DAL" expanded="True">
               <Node name="Repositories" expanded="True">
-                <Node name="Interfaces" expanded="True">
-                  <Node name="IRepository.cs" selected="True" />
+                <Node name="Implements" expanded="True">
+                  <Node name="Repository.cs" selected="True" />
                 </Node>
               </Node>
             </Node>

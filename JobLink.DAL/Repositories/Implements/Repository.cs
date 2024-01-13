@@ -1,5 +1,6 @@
 ﻿using System.Linq.Expressions;
 using JobLink.Core.Entities.CommonEntities;
+using JobLink.DAL.Contexts;
 using JobLink.DAL.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,61 +8,86 @@ namespace JobLink.DAL.Repositories.Implements;
 
 public class Repository<T> : IRepository<T> where T : BaseEntity, new()
 {
-    public DbSet<T> Table => throw new NotImplementedException();
+    readonly AppDbContext _context;
 
-    public Task CreateAsync(T entity)
+    public Repository(AppDbContext context)
     {
-        throw new NotImplementedException();
+        _context = context;
+    }
+
+    public DbSet<T> Table => _context.Set<T>();
+
+    public async Task CreateAsync(T entity)
+    {
+        await Table.AddAsync(entity);
     }
 
     public void Delete(T entity)
     {
-        throw new NotImplementedException();
+        Table.Remove(entity);
     }
 
-    public Task DeleteAsync(int id)
+    public async Task DeleteAsync(int id)
     {
-        throw new NotImplementedException();
+        var entity = await GetByIdAsync(id);
+        Table.Remove(entity);
     }
 
     public IQueryable<T> FindAll(Expression<Func<T, bool>> expression, params string[] includes)
     {
-        throw new NotImplementedException();
+        var query = Table.AsQueryable();
+        return _getIncludes(query, includes).Where(expression);
     }
 
     public IQueryable<T> GetAll(params string[] includes)
     {
-        throw new NotImplementedException();
+        var query = Table.AsQueryable();
+        return _getIncludes(query, includes);
     }
 
-    public Task<T> GetByIdAsync(int id, params string[] includes)
+    public async Task<T> GetByIdAsync(int id, params string[] includes)
     {
-        throw new NotImplementedException();
+        if(includes.Length==0)
+        {
+            return await Table.FindAsync(id);
+        }
+        var query = Table.AsQueryable();
+        return await _getIncludes(query, includes).SingleOrDefaultAsync(t => t.Id == id);
     }
 
-    public Task<T> GetSingleAsync(Expression<Func<T, bool>> expression, params string[] inlcudes)
+    public async Task<T> GetSingleAsync(Expression<Func<T, bool>> expression, params string[] includes)
     {
-        throw new NotImplementedException();
+        var query = Table.AsQueryable();
+        return await _getIncludes(query, includes).SingleOrDefaultAsync(expression);
     }
 
-    public Task<bool> IsExistAsync(Expression<Func<T, bool>> expression)
+    public async Task<bool> IsExistAsync(Expression<Func<T, bool>> expression)
     {
-        throw new NotImplementedException();
+        return await Table.AnyAsync(expression);
     }
 
     public void ReverteSoftDelete(T entity)
     {
-        throw new NotImplementedException();
+        entity.IsDeleted = false;
     }
 
-    public Task SaveAsync()
+    public async Task SaveAsync()
     {
-        throw new NotImplementedException();
+        await _context.SaveChangesAsync();
     }
 
     public void SoftDelete(T entity)
     {
-        throw new NotImplementedException();
+        entity.IsDeleted = true;
+    }
+
+    IQueryable<T> _getIncludes(IQueryable<T> query, params string[] includes)
+    {
+        foreach (var item in includes)
+        {
+            query = query.Include(item);
+        }
+        return query;
     }
 }
 

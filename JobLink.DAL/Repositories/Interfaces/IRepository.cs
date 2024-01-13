@@ -10,7 +10,7 @@ public interface IRepository<T> where T : BaseEntity , new()
     IQueryable<T> GetAll(params string[] includes);
     IQueryable<T> FindAll(Expression<Func<T,bool>> expression, params string[] includes);
     Task<T> GetByIdAsync(int id,params string[] includes);
-    Task<T> GetSingleAsync(Expression<Func<T, bool>> expression, params string[] inlcudes);
+    Task<T> GetSingleAsync(Expression<Func<T, bool>> expression, params string[] includes);
     Task<bool> IsExistAsync(Expression<Func<T, bool>> expression);
     Task CreateAsync(T entity);
     Task DeleteAsync(int id);
