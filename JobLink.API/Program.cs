@@ -14,6 +14,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.OpenApi.Models;
+using JobLink.Business.Constants;
+using JobLink.DAL;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -81,6 +83,7 @@ builder.Services.AddScoped<IEmailSenderService, EmailSenderService>();
 builder.Services.AddAutoMapper(typeof(RegisterDto).Assembly);
 
 builder.Services.AddServices();
+builder.Services.AddRepositories();
 
 builder.Services.AddAuthentication(opt =>
 {
@@ -121,9 +124,11 @@ app.UseAuthentication();
 
 app.UseAuthorization();
 
-//app.UseCustomExceptionHandler();
+app.UseCustomExceptionHandler();
 
 app.MapControllers();
+
+RootConstant.Root = builder.Environment.WebRootPath;
 
 app.Run();
 

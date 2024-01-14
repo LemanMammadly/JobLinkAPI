@@ -25,6 +25,10 @@
     <None Remove="Dtos\TokenDtos\" />
     <None Remove="Exceptions\RoleExceptions\" />
     <None Remove="Dtos\RolesDtos\" />
+    <None Remove="Exceptions\FileExceptions\" />
+    <None Remove="Constants\" />
+    <None Remove="Extensions\" />
+    <None Remove="Validators\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dtos\" />
@@ -42,6 +46,10 @@
     <Folder Include="Dtos\TokenDtos\" />
     <Folder Include="Exceptions\RoleExceptions\" />
     <Folder Include="Dtos\RolesDtos\" />
+    <Folder Include="Exceptions\FileExceptions\" />
+    <Folder Include="Constants\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Validators\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.9.0" />
@@ -49,5 +57,6 @@
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
     <PackageReference Include="NETCore.MailKit" Version="2.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
   </ItemGroup>
 </Project>

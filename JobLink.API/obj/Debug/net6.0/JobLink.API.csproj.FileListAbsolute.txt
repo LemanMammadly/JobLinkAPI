@@ -83,3 +83,11 @@
 /Users/imac/Desktop/JobLink/JobLink.API/bin/Debug/net6.0/BouncyCastle.Crypto.dll
 /Users/imac/Desktop/JobLink/JobLink.API/bin/Debug/net6.0/JobLink.API.staticwebassets.runtime.json
 /Users/imac/Desktop/JobLink/JobLink.API/bin/Debug/net6.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/Users/imac/Desktop/JobLink/JobLink.API/bin/Debug/net6.0/Microsoft.Extensions.Configuration.Abstractions.dll
+/Users/imac/Desktop/JobLink/JobLink.API/bin/Debug/net6.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+/Users/imac/Desktop/JobLink/JobLink.API/bin/Debug/net6.0/Microsoft.Extensions.Diagnostics.Abstractions.dll
+/Users/imac/Desktop/JobLink/JobLink.API/bin/Debug/net6.0/Microsoft.Extensions.FileProviders.Abstractions.dll
+/Users/imac/Desktop/JobLink/JobLink.API/bin/Debug/net6.0/Microsoft.Extensions.Hosting.Abstractions.dll
+/Users/imac/Desktop/JobLink/JobLink.API/bin/Debug/net6.0/Microsoft.Extensions.Logging.Abstractions.dll
+/Users/imac/Desktop/JobLink/JobLink.API/bin/Debug/net6.0/Microsoft.Extensions.Options.dll
+/Users/imac/Desktop/JobLink/JobLink.API/bin/Debug/net6.0/Microsoft.Extensions.Primitives.dll

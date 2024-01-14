@@ -3,7 +3,6 @@ using JobLink.Core.Entities.CommonEntities;
 using JobLink.DAL.Contexts;
 using JobLink.DAL.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
-
 namespace JobLink.DAL.Repositories.Implements;
 
 public class Repository<T> : IRepository<T> where T : BaseEntity, new()
