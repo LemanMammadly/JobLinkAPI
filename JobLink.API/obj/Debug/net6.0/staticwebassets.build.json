@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "W3kOYWdwVXAjU7TLWrZ2oTjq7WDUF7JiSq9dFGhkpbs=",
+  "Hash": "m4aeAs2uUjgGTDxVqrjXzvXh2SeePBHwhFwzCHl8znI=",
   "Source": "JobLink.API",
   "BasePath": "_content/JobLink.API",
   "Mode": "Default",
@@ -34,12 +34,12 @@
       "OriginalItemSpec": "wwwroot/emailConfirmationTemplate.html"
     },
     {
-      "Identity": "/Users/imac/Desktop/JobLink/JobLink.API/wwwroot/imgs/industry/2ef93ea7-6335-462e-99ba-16269f1faa17.png",
+      "Identity": "/Users/imac/Desktop/JobLink/JobLink.API/wwwroot/imgs/industry/01bb1b36-f8c2-42eb-8397-2fdb3d0a32ae.png",
       "SourceId": "JobLink.API",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/imac/Desktop/JobLink/JobLink.API/wwwroot/",
       "BasePath": "_content/JobLink.API",
-      "RelativePath": "imgs/industry/2ef93ea7-6335-462e-99ba-16269f1faa17.png",
+      "RelativePath": "imgs/industry/01bb1b36-f8c2-42eb-8397-2fdb3d0a32ae.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -48,7 +48,24 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/imgs/industry/2ef93ea7-6335-462e-99ba-16269f1faa17.png"
+      "OriginalItemSpec": "wwwroot/imgs/industry/01bb1b36-f8c2-42eb-8397-2fdb3d0a32ae.png"
+    },
+    {
+      "Identity": "/Users/imac/Desktop/JobLink/JobLink.API/wwwroot/imgs/industry/89298644-d1e5-4c3f-86ae-c2530f68f3e3.png",
+      "SourceId": "JobLink.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/imac/Desktop/JobLink/JobLink.API/wwwroot/",
+      "BasePath": "_content/JobLink.API",
+      "RelativePath": "imgs/industry/89298644-d1e5-4c3f-86ae-c2530f68f3e3.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/imgs/industry/89298644-d1e5-4c3f-86ae-c2530f68f3e3.png"
     }
   ]
 }

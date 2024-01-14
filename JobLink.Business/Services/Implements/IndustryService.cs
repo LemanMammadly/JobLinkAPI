@@ -40,6 +40,17 @@ public class IndustryService : IIndustryService
         await _repo.SaveAsync();
     }
 
+    public async Task DeleteAsync(int id)
+    {
+        if (id <= 0) throw new NegativeIdException<Industry>();
+        var entity = await _repo.GetByIdAsync(id);
+        if (entity is null) throw new IndustryNotFoundException();
+
+        _repo.Delete(entity);
+        _fileService.Delete(entity.Logo);
+        await _repo.SaveAsync();
+    }
+
     public async Task<IEnumerable<IndustryListItemDto>> GetAllAsync(bool takeAll)
     {
         if (takeAll)
@@ -69,6 +80,26 @@ public class IndustryService : IIndustryService
         }
 
         return _mapper.Map<IndustryDetailItemDto>(entity);
+    }
+
+    public async Task ReverteSoftDeleteAsync(int id)
+    {
+        if (id <= 0) throw new NegativeIdException<Industry>();
+        var entity = await _repo.GetByIdAsync(id);
+        if (entity is null) throw new IndustryNotFoundException();
+
+        _repo.ReverteSoftDelete(entity);
+        await _repo.SaveAsync();
+    }
+
+    public async Task SoftDeleteAsync(int id)
+    {
+        if (id <= 0) throw new NegativeIdException<Industry>();
+        var entity = await _repo.GetByIdAsync(id);
+        if (entity is null) throw new IndustryNotFoundException();
+
+        _repo.SoftDelete(entity);
+        await _repo.SaveAsync();
     }
 
     public async Task UpdateAsync(int id,UpdateIndustryDto dto)

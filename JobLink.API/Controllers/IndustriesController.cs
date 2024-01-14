@@ -46,6 +46,27 @@ namespace JobLink.API.Controllers
             await _service.UpdateAsync(id, dto);
             return NoContent();
         }
+
+        [HttpDelete("[action]/{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _service.DeleteAsync(id);
+            return NoContent();
+        }
+
+        [HttpPatch("[action]/{id}")]
+        public async Task<IActionResult> Softelete(int id)
+        {
+            await _service.SoftDeleteAsync(id);
+            return NoContent();
+        }
+
+        [HttpPatch("[action]/{id}")]
+        public async Task<IActionResult> ReverteSoftelete(int id)
+        {
+            await _service.ReverteSoftDeleteAsync(id);
+            return NoContent();
+        }
     }
 }
 

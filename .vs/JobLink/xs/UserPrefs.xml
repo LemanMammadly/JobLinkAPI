@@ -1,20 +1,22 @@
 ﻿<Properties StartupConfiguration="{2B17C4CB-5290-471D-A402-C8627FD2E3A0}|Default">
   <MonoDevelop.Ide.Workbench ActiveDocument="JobLink.Business/Services/Implements/IndustryService.cs">
     <Files>
-      <File FileName="JobLink.API/Controllers/IndustriesController.cs" />
-      <File FileName="JobLink.Business/Services/Interfaces/IIndustryService.cs" />
-      <File FileName="JobLink.Business/Dtos/IndustryDtos/UpdateIndustryDto.cs" />
-      <File FileName="JobLink.Business/Dtos/IndustryDtos/CreateIndustryDto.cs" />
-      <File FileName="JobLink.Business/Services/Implements/IndustryService.cs" Line="91" Column="33" />
+      <File FileName="JobLink.API/Controllers/IndustriesController.cs" Line="67" Column="50" />
+      <File FileName="JobLink.Business/Services/Interfaces/IIndustryService.cs" Line="13" Column="17" />
+      <File FileName="JobLink.Business/Services/Implements/IndustryService.cs" Line="50" Column="42" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="JobLink" expanded="True">
-            <Node name="JobLink.API" expanded="True">
+            <Node name="JobLink.API">
               <Node name="Controllers" expanded="True" />
+              <Node name="wwwroot" expanded="True" />
             </Node>
             <Node name="JobLink.Business">
+              <Node name="ExternalServices" expanded="True">
+                <Node name="Implements" expanded="True" />
+              </Node>
               <Node name="Services" expanded="True">
                 <Node name="Implements" expanded="True">
                   <Node name="IndustryService.cs" selected="True" />
