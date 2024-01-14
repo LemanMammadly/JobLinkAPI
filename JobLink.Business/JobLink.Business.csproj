@@ -29,6 +29,8 @@
     <None Remove="Constants\" />
     <None Remove="Extensions\" />
     <None Remove="Validators\" />
+    <None Remove="Dtos\IndustryDtos\" />
+    <None Remove="Exceptions\IndustryExceptions\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dtos\" />
@@ -50,6 +52,8 @@
     <Folder Include="Constants\" />
     <Folder Include="Extensions\" />
     <Folder Include="Validators\" />
+    <Folder Include="Dtos\IndustryDtos\" />
+    <Folder Include="Exceptions\IndustryExceptions\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.9.0" />

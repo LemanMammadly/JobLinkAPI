@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "cIv5CyA+RV3wHDed7ry7MKSlhUpn6JlSs1y5xPS4aQw=",
+  "Hash": "W3kOYWdwVXAjU7TLWrZ2oTjq7WDUF7JiSq9dFGhkpbs=",
   "Source": "JobLink.API",
   "BasePath": "_content/JobLink.API",
   "Mode": "Default",
@@ -32,6 +32,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/emailConfirmationTemplate.html"
+    },
+    {
+      "Identity": "/Users/imac/Desktop/JobLink/JobLink.API/wwwroot/imgs/industry/2ef93ea7-6335-462e-99ba-16269f1faa17.png",
+      "SourceId": "JobLink.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/imac/Desktop/JobLink/JobLink.API/wwwroot/",
+      "BasePath": "_content/JobLink.API",
+      "RelativePath": "imgs/industry/2ef93ea7-6335-462e-99ba-16269f1faa17.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/imgs/industry/2ef93ea7-6335-462e-99ba-16269f1faa17.png"
     }
   ]
 }
