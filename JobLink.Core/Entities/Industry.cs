@@ -6,6 +6,7 @@ public class Industry:BaseEntity
 {
     public string Name { get; set; }
     public string Logo { get; set; }
+    public ICollection<CompanyIndustry> CompanyIndustries { get; set; }
 }
 
 

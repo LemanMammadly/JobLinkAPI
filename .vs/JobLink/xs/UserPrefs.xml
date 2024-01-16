@@ -1,39 +1,41 @@
 ﻿<Properties StartupConfiguration="{2B17C4CB-5290-471D-A402-C8627FD2E3A0}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="JobLink.Business/Services/Implements/IndustryService.cs">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench ActiveDocument="JobLink.Business/Services/Implements/CompanyService.cs">
     <Files>
-      <File FileName="JobLink.API/Controllers/IndustriesController.cs" Line="67" Column="50" />
-      <File FileName="JobLink.Business/Services/Interfaces/IIndustryService.cs" Line="13" Column="17" />
-      <File FileName="JobLink.Business/Services/Implements/IndustryService.cs" Line="50" Column="42" />
+      <File FileName="JobLink.Business/Services/Interfaces/ICompanyService.cs" Line="8" Column="21" />
+      <File FileName="JobLink.Business/Services/Interfaces/IIndustryService.cs" Line="1" Column="1" />
+      <File FileName="JobLink.Core/Entities/CompanyIndustry.cs" />
+      <File FileName="JobLink.Core/Entities/Company.cs" />
+      <File FileName="JobLink.Business/Dtos/CompanyDtos/CompanyListItemDto.cs" Line="17" Column="75" />
+      <File FileName="JobLink.Business/Services/Implements/CompanyService.cs" Line="65" Column="21" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="JobLink" expanded="True">
-            <Node name="JobLink.API">
-              <Node name="Controllers" expanded="True" />
-              <Node name="wwwroot" expanded="True" />
-            </Node>
             <Node name="JobLink.Business">
-              <Node name="ExternalServices" expanded="True">
-                <Node name="Implements" expanded="True" />
+              <Node name="Dtos" expanded="True">
+                <Node name="CompanyDtos" expanded="True" />
               </Node>
               <Node name="Services" expanded="True">
                 <Node name="Implements" expanded="True">
-                  <Node name="IndustryService.cs" selected="True" />
+                  <Node name="CompanyService.cs" selected="True" />
                 </Node>
                 <Node name="Interfaces" expanded="True" />
               </Node>
+            </Node>
+            <Node name="JobLink.Core" expanded="True">
+              <Node name="Entities" expanded="True" />
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.ItemProperties.JobLink.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
 </Properties>
