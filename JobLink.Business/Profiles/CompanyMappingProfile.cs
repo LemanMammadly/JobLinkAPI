@@ -10,6 +10,8 @@ public class CompanyMappingProfile:Profile
     {
         CreateMap<CreateCompanyDto, Company>().ReverseMap();
         CreateMap<CompanyListItemDto, Company>().ReverseMap();
+        CreateMap<CompanyDetailItemDto, Company>().ReverseMap();
+        CreateMap<CompanyUpdateDto, Company>().ReverseMap();
         CreateMap<CompanyIndustryDto, CompanyIndustry>().ReverseMap();
     }
 }

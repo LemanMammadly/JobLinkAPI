@@ -58,6 +58,21 @@ public class CompanyService : ICompanyService
         await _repo.SaveAsync();
     }
 
+    public async Task DeleteAsync(int id)
+    {
+        if (id <= 0) throw new NegativeIdException<Company>();
+        var entity = await _repo.GetByIdAsync(id);
+        if (entity is null) throw new NotFoundException<Company>();
+
+        if(entity.Logo != null)
+        {
+            _fileService.Delete(entity.Logo);
+        }
+
+        _repo.Delete(entity);
+        await _repo.SaveAsync();
+    }
+
     public async Task<IEnumerable<CompanyListItemDto>> GetAllAsync(bool takeAll)
     {
         if(takeAll)
@@ -70,6 +85,78 @@ public class CompanyService : ICompanyService
             var entities = _repo.FindAll(c=>c.IsDeleted==false,"CompanyIndustries", "CompanyIndustries.Industry");
             return _mapper.Map<IEnumerable<CompanyListItemDto>>(entities);
         }
+    }
+
+    public async Task<CompanyDetailItemDto> GetByIdAsync(int id, bool takeAll)
+    {
+        if (id <= 0) throw new NegativeIdException<Company>();
+        Company? entity;
+
+        if(takeAll)
+        {
+            entity = await _repo.GetByIdAsync(id, "CompanyIndustries", "CompanyIndustries.Industry");
+            if (entity is null) throw new NotFoundException<Company>();
+        }
+        else
+        {
+            entity = await _repo.GetSingleAsync(c => c.Id == id && c.IsDeleted == false, "CompanyIndustries", "CompanyIndustries.Industry");
+            if (entity is null) throw new NotFoundException<Company>();
+        }
+        return _mapper.Map<CompanyDetailItemDto>(entity);
+    }
+
+    public async Task ReverteSoftDeleteAsync(int id)
+    {
+        if (id <= 0) throw new NegativeIdException<Company>();
+        var entity = await _repo.GetByIdAsync(id);
+        if (entity is null) throw new NotFoundException<Company>();
+
+        _repo.ReverteSoftDelete(entity);
+        await _repo.SaveAsync();
+    }
+
+    public async Task SoftDeleteAsync(int id)
+    {
+        if (id <= 0) throw new NegativeIdException<Company>();
+        var entity = await _repo.GetByIdAsync(id);
+        if (entity is null) throw new NotFoundException<Company>();
+
+        _repo.SoftDelete(entity);
+        await _repo.SaveAsync();
+    }
+
+    public async Task UpdateAsync(int id, CompanyUpdateDto dto)
+    {
+        if (id <= 0) throw new NegativeIdException<Company>();
+        var entity = await _repo.GetByIdAsync(id, "CompanyIndustries", "CompanyIndustries.Industry");
+        if (entity is null) throw new NotFoundException<Company>();
+        if (await _repo.IsExistAsync(c => c.Name == dto.Name && c.Id != id)) throw new IsAlreadyExistException<Company>();
+        if (dto.LogoFile != null)
+        {
+            if(entity.Logo!=null)
+            {
+                _fileService.Delete(entity.Logo);
+            }
+            if (!dto.LogoFile.IsSizeValid(3)) throw new SizeNotValidException();
+            if (!dto.LogoFile.IsTypeValid("image")) throw new TypeNotValidException();
+            entity.Logo = await _fileService.UploadAsync(dto.LogoFile, RootConstant.CompanyLogoRoot);
+        }
+        List<CompanyIndustry> companyIndustries = new List<CompanyIndustry>();
+        if (dto.IndustryIds != null) 
+        {
+            foreach (var ids in dto.IndustryIds)
+            {
+                var industry = await _industryRepository.GetByIdAsync(ids, "CompanyIndustries", "CompanyIndustries.Company");
+                if (industry is null) throw new NotFoundException<Industry>();
+                companyIndustries.Add(new CompanyIndustry { Industry=industry});
+            }
+        }
+        var newEntity = _mapper.Map(dto, entity);
+        if(dto.IndustryIds != null)
+        {
+            newEntity.CompanyIndustries = companyIndustries;
+        }
+        await _repo.SaveAsync();
     }
 }
 

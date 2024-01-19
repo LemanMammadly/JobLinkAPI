@@ -33,6 +33,40 @@ namespace JobLink.API.Controllers
         {
             return Ok(await _service.GetAllAsync(true));
         }
+
+        [HttpGet("[action]/{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            return Ok(await _service.GetByIdAsync(id,true));
+        }
+
+        [HttpPut("[action]/{id}")]
+        public async Task<IActionResult> Update(int id,[FromForm]CompanyUpdateDto dto)
+        {
+            await _service.UpdateAsync(id, dto);
+            return NoContent();
+        }
+
+        [HttpDelete("[action]/{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _service.DeleteAsync(id);
+            return NoContent();
+        }
+
+        [HttpDelete("[action]/{id}")]
+        public async Task<IActionResult> SoftDelete(int id)
+        {
+            await _service.SoftDeleteAsync(id);
+            return NoContent();
+        }
+
+        [HttpDelete("[action]/{id}")]
+        public async Task<IActionResult> ReverteSoftDelete(int id)
+        {
+            await _service.ReverteSoftDeleteAsync(id);
+            return NoContent();
+        }
     }
 }
 
