@@ -97,17 +97,17 @@ public class AppUserService : IAppUserService
 
         if(takeAll)
         {
-            foreach (var user in await _userManager.Users.ToListAsync())
+            foreach (var user in await _userManager.Users.Include(u=>u.Company).ToListAsync())
             {
                 users.Add(new UserWithRoles {
                     User = _mapper.Map<UserListItemDto>(user),
-                    Roles = await _userManager.GetRolesAsync(user)
+                    Roles = await _userManager.GetRolesAsync(user),
                 });
             }
         }
         else
         {
-            foreach (var user in await _userManager.Users.Where(u=>u.IsDeleted==false).ToListAsync())
+            foreach (var user in await _userManager.Users.Include(u => u.Company).Where(u=>u.IsDeleted==false).ToListAsync())
             {
                 users.Add(new UserWithRoles
                 {
@@ -125,7 +125,7 @@ public class AppUserService : IAppUserService
         UserWithRole user = new UserWithRole();
         if(takeAll)
         {
-            var user1 = await _userManager.Users.SingleOrDefaultAsync(u => u.Id == id);
+            var user1 = await _userManager.Users.Include(u => u.Company).SingleOrDefaultAsync(u => u.Id == id);
             if (user1 is null) throw new AppUserNotFoundException();
             user = new UserWithRole
             {
@@ -135,7 +135,7 @@ public class AppUserService : IAppUserService
         }
         else
         {
-            var user1 = await _userManager.Users.SingleOrDefaultAsync(u => u.Id == id && u.IsDeleted==false);
+            var user1 = await _userManager.Users.Include(u => u.Company).SingleOrDefaultAsync(u => u.Id == id && u.IsDeleted==false);
             if (user1 is null) throw new AppUserNotFoundException();
             user = new UserWithRole
             {

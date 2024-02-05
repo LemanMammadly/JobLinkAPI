@@ -13,3 +13,6 @@ public interface ICompanyService
     Task ReverteSoftDeleteAsync(int id);
 }
 
+
+
+

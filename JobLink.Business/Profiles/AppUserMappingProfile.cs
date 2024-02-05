@@ -12,6 +12,7 @@ public class AppUserMappingProfile:Profile
         CreateMap<UpdateDto, AppUser>().ReverseMap();
         CreateMap<AppUser, UserListItemDto>().ReverseMap();
         CreateMap<AppUser, UserDetailItemDto>().ReverseMap();
+        CreateMap<AppUser, AppUserInfoDto>().ReverseMap();
     }
 }
 

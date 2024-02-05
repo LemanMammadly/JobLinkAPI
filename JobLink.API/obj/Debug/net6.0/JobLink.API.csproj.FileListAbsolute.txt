@@ -91,3 +91,7 @@
 /Users/imac/Desktop/JobLink/JobLink.API/bin/Debug/net6.0/Microsoft.Extensions.Logging.Abstractions.dll
 /Users/imac/Desktop/JobLink/JobLink.API/bin/Debug/net6.0/Microsoft.Extensions.Options.dll
 /Users/imac/Desktop/JobLink/JobLink.API/bin/Debug/net6.0/Microsoft.Extensions.Primitives.dll
+/Users/imac/Desktop/JobLink/JobLink.API/bin/Debug/net6.0/Microsoft.AspNetCore.JsonPatch.dll
+/Users/imac/Desktop/JobLink/JobLink.API/bin/Debug/net6.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+/Users/imac/Desktop/JobLink/JobLink.API/bin/Debug/net6.0/Newtonsoft.Json.dll
+/Users/imac/Desktop/JobLink/JobLink.API/bin/Debug/net6.0/Newtonsoft.Json.Bson.dll

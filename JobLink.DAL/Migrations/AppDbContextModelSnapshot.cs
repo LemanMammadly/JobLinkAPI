@@ -118,6 +118,10 @@ namespace JobLink.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("AppUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<DateTime>("CreateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
@@ -150,6 +154,9 @@ namespace JobLink.DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AppUserId")
+                        .IsUnique();
 
                     b.ToTable("Companies");
                 });
@@ -368,6 +375,17 @@ namespace JobLink.DAL.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("JobLink.Core.Entities.Company", b =>
+                {
+                    b.HasOne("JobLink.Core.Entities.AppUser", "AppUser")
+                        .WithOne("Company")
+                        .HasForeignKey("JobLink.Core.Entities.Company", "AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+                });
+
             modelBuilder.Entity("JobLink.Core.Entities.CompanyIndustry", b =>
                 {
                     b.HasOne("JobLink.Core.Entities.Company", "Company")
@@ -451,6 +469,8 @@ namespace JobLink.DAL.Migrations
 
             modelBuilder.Entity("JobLink.Core.Entities.AppUser", b =>
                 {
+                    b.Navigation("Company");
+
                     b.Navigation("EmailToken");
                 });
 

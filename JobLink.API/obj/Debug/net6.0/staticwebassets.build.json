@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "P8b3zwtQueW2eL6wQgbr+Y0h8RBXAxZ3oYp+JWF2LKE=",
+  "Hash": "RQ03TDbZrMHp1VgWaC+wvtq28SfLc2oz7c06lafsBz8=",
   "Source": "JobLink.API",
   "BasePath": "_content/JobLink.API",
   "Mode": "Default",
@@ -85,6 +85,74 @@
       "OriginalItemSpec": "wwwroot/imgs/company/38f84ff7-687c-4afa-b7d6-f2bafc772f7b.jpg"
     },
     {
+      "Identity": "/Users/imac/Desktop/JobLink/JobLink.API/wwwroot/imgs/company/552bcb54-160e-4ac9-9ee7-bf9112724880.png",
+      "SourceId": "JobLink.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/imac/Desktop/JobLink/JobLink.API/wwwroot/",
+      "BasePath": "_content/JobLink.API",
+      "RelativePath": "imgs/company/552bcb54-160e-4ac9-9ee7-bf9112724880.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/imgs/company/552bcb54-160e-4ac9-9ee7-bf9112724880.png"
+    },
+    {
+      "Identity": "/Users/imac/Desktop/JobLink/JobLink.API/wwwroot/imgs/company/5b78db96-cef8-4de3-8d07-3df16ef99ee0.jpg",
+      "SourceId": "JobLink.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/imac/Desktop/JobLink/JobLink.API/wwwroot/",
+      "BasePath": "_content/JobLink.API",
+      "RelativePath": "imgs/company/5b78db96-cef8-4de3-8d07-3df16ef99ee0.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/imgs/company/5b78db96-cef8-4de3-8d07-3df16ef99ee0.jpg"
+    },
+    {
+      "Identity": "/Users/imac/Desktop/JobLink/JobLink.API/wwwroot/imgs/company/6d540326-239f-4b04-8b77-d3c6a94b221c.jpg",
+      "SourceId": "JobLink.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/imac/Desktop/JobLink/JobLink.API/wwwroot/",
+      "BasePath": "_content/JobLink.API",
+      "RelativePath": "imgs/company/6d540326-239f-4b04-8b77-d3c6a94b221c.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/imgs/company/6d540326-239f-4b04-8b77-d3c6a94b221c.jpg"
+    },
+    {
+      "Identity": "/Users/imac/Desktop/JobLink/JobLink.API/wwwroot/imgs/company/feb10d71-73a4-4ef9-9b23-2f6c43d62797.jpg",
+      "SourceId": "JobLink.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/imac/Desktop/JobLink/JobLink.API/wwwroot/",
+      "BasePath": "_content/JobLink.API",
+      "RelativePath": "imgs/company/feb10d71-73a4-4ef9-9b23-2f6c43d62797.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/imgs/company/feb10d71-73a4-4ef9-9b23-2f6c43d62797.jpg"
+    },
+    {
       "Identity": "/Users/imac/Desktop/JobLink/JobLink.API/wwwroot/imgs/industry/4045b13b-86be-473f-afba-456c34740339.jpg",
       "SourceId": "JobLink.API",
       "SourceType": "Discovered",
@@ -102,12 +170,12 @@
       "OriginalItemSpec": "wwwroot/imgs/industry/4045b13b-86be-473f-afba-456c34740339.jpg"
     },
     {
-      "Identity": "/Users/imac/Desktop/JobLink/JobLink.API/wwwroot/imgs/industry/9ad5bd02-b337-458e-aff4-b7d8372c9641.png",
+      "Identity": "/Users/imac/Desktop/JobLink/JobLink.API/wwwroot/imgs/industry/41197b84-7794-4d6d-9c88-12618eeda095.jpg",
       "SourceId": "JobLink.API",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/imac/Desktop/JobLink/JobLink.API/wwwroot/",
       "BasePath": "_content/JobLink.API",
-      "RelativePath": "imgs/industry/9ad5bd02-b337-458e-aff4-b7d8372c9641.png",
+      "RelativePath": "imgs/industry/41197b84-7794-4d6d-9c88-12618eeda095.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -116,7 +184,24 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/imgs/industry/9ad5bd02-b337-458e-aff4-b7d8372c9641.png"
+      "OriginalItemSpec": "wwwroot/imgs/industry/41197b84-7794-4d6d-9c88-12618eeda095.jpg"
+    },
+    {
+      "Identity": "/Users/imac/Desktop/JobLink/JobLink.API/wwwroot/imgs/industry/d0545d8c-6c2e-4370-9522-a0ad30dee989.png",
+      "SourceId": "JobLink.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/imac/Desktop/JobLink/JobLink.API/wwwroot/",
+      "BasePath": "_content/JobLink.API",
+      "RelativePath": "imgs/industry/d0545d8c-6c2e-4370-9522-a0ad30dee989.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/imgs/industry/d0545d8c-6c2e-4370-9522-a0ad30dee989.png"
     }
   ]
 }

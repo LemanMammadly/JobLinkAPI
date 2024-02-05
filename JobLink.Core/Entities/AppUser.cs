@@ -10,4 +10,6 @@ public class AppUser:IdentityUser
     public DateTime? RefreshTokenExpiresDate { get; set; }
     public EmailToken? EmailToken { get; set; }
     public bool IsDeleted { get; set; }
+    public Company? Company { get; set; }
 }
+

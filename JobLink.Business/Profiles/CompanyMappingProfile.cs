@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using JobLink.Business.Dtos.CompanyDtos;
+using JobLink.Business.Dtos.IndustryDtos;
 using JobLink.Core.Entities;
 
 namespace JobLink.Business.Profiles;
@@ -12,7 +13,9 @@ public class CompanyMappingProfile:Profile
         CreateMap<CompanyListItemDto, Company>().ReverseMap();
         CreateMap<CompanyDetailItemDto, Company>().ReverseMap();
         CreateMap<CompanyUpdateDto, Company>().ReverseMap();
-        CreateMap<CompanyIndustryDto, CompanyIndustry>().ReverseMap();
+        CreateMap<Dtos.CompanyDtos.CompanyIndustryDto, CompanyIndustry>().ReverseMap();
+        CreateMap<CompanyInfoDto, Company>().ReverseMap();
+        CreateMap<IndustryInfoDto, Industry>().ReverseMap();
     }
 }
 

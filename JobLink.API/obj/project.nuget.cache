@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "lhvy1GBKPimZYxxsiBH4+QWqrpeABOFE4DQkh8FfjiPK+fs+PEYjO9mLYQ8aPLXMO5ePsb+LwMWxPXW6XKFH3g==",
+  "dgSpecHash": "6R4EBNst5Bu/6jFjVh5kUUkUZ/BsDrXB3CgwM6ybYyststFXTgMAXr8L8FksTp38ntBAl5bvtcTQB0EUaTsh9w==",
   "success": true,
   "projectFilePath": "/Users/imac/Desktop/JobLink/JobLink.API/JobLink.API.csproj",
   "expectedPackageFiles": [
@@ -28,6 +28,8 @@
     "/Users/imac/.nuget/packages/microsoft.aspnetcore.http.features/2.2.0/microsoft.aspnetcore.http.features.2.2.0.nupkg.sha512",
     "/Users/imac/.nuget/packages/microsoft.aspnetcore.identity/2.2.0/microsoft.aspnetcore.identity.2.2.0.nupkg.sha512",
     "/Users/imac/.nuget/packages/microsoft.aspnetcore.identity.entityframeworkcore/6.0.25/microsoft.aspnetcore.identity.entityframeworkcore.6.0.25.nupkg.sha512",
+    "/Users/imac/.nuget/packages/microsoft.aspnetcore.jsonpatch/6.0.26/microsoft.aspnetcore.jsonpatch.6.0.26.nupkg.sha512",
+    "/Users/imac/.nuget/packages/microsoft.aspnetcore.mvc.newtonsoftjson/6.0.26/microsoft.aspnetcore.mvc.newtonsoftjson.6.0.26.nupkg.sha512",
     "/Users/imac/.nuget/packages/microsoft.aspnetcore.webutilities/2.2.0/microsoft.aspnetcore.webutilities.2.2.0.nupkg.sha512",
     "/Users/imac/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512",
     "/Users/imac/.nuget/packages/microsoft.data.sqlclient/2.1.4/microsoft.data.sqlclient.2.1.4.nupkg.sha512",
@@ -69,6 +71,8 @@
     "/Users/imac/.nuget/packages/microsoft.win32.systemevents/4.7.0/microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "/Users/imac/.nuget/packages/mimekit/3.2.0/mimekit.3.2.0.nupkg.sha512",
     "/Users/imac/.nuget/packages/netcore.mailkit/2.1.0/netcore.mailkit.2.1.0.nupkg.sha512",
+    "/Users/imac/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512",
+    "/Users/imac/.nuget/packages/newtonsoft.json.bson/1.0.2/newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "/Users/imac/.nuget/packages/portable.bouncycastle/1.9.0/portable.bouncycastle.1.9.0.nupkg.sha512",
     "/Users/imac/.nuget/packages/swashbuckle.aspnetcore/6.2.3/swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
     "/Users/imac/.nuget/packages/swashbuckle.aspnetcore.swagger/6.2.3/swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",

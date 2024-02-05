@@ -13,6 +13,9 @@ public class Company:BaseEntity
     public string? Website { get; set; }
     public DateTime CreateDate { get; set; }
     public ICollection<CompanyIndustry> CompanyIndustries { get; set; }
+    public AppUser AppUser { get; set; }
+    public string AppUserId { get; set; }
 }
+
 
 

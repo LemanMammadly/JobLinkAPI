@@ -4,7 +4,7 @@ namespace JobLink.Business.Dtos.CompanyDtos;
 
 public record CompanyIndustryDto
 {
-    public IndustryListItemDto Industry { get; set; }
+    public IndustryInfoDto Industry { get; set; }
 }
 
 

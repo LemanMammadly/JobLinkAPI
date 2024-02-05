@@ -1,4 +1,6 @@
-﻿namespace JobLink.Business.Dtos.AppUserDtos;
+﻿using JobLink.Business.Dtos.CompanyDtos;
+
+namespace JobLink.Business.Dtos.AppUserDtos;
 
 public record UserListItemDto
 {
@@ -8,6 +10,7 @@ public record UserListItemDto
     public string UserName { get; set; }
     public string Email { get; set; }
     public bool IsDeleted { get; set; }
+    public CompanyInfoDto Company { get; set; }
 }
 
 

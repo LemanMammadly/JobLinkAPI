@@ -1,4 +1,6 @@
-﻿namespace JobLink.Business.Dtos.IndustryDtos;
+﻿using JobLink.Business.Dtos.CompanyDtos;
+
+namespace JobLink.Business.Dtos.IndustryDtos;
 
 public class IndustryListItemDto
 {
@@ -6,6 +8,8 @@ public class IndustryListItemDto
     public string Name { get; set; }
     public string Logo { get; set; }
     public bool IsDeleted { get; set; }
+    public IEnumerable<CompanyIndustryDto> CompanyIndustries { get; set; }
 }
+
 
 

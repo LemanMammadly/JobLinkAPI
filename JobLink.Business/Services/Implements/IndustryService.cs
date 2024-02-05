@@ -43,8 +43,17 @@ public class IndustryService : IIndustryService
     public async Task DeleteAsync(int id)
     {
         if (id <= 0) throw new NegativeIdException<Industry>();
-        var entity = await _repo.GetByIdAsync(id);
+        var entity = await _repo.GetSingleAsync(e => e.Id == id, "CompanyIndustries", "CompanyIndustries.Company");
         if (entity is null) throw new IndustryNotFoundException();
+
+
+        foreach (var ent in entity.CompanyIndustries)
+        {
+            if (ent.Company != null)
+            {
+                throw new CompanyIsExistInIndustryException();
+            }
+        }
 
         _repo.Delete(entity);
         _fileService.Delete(entity.Logo);
@@ -55,11 +64,13 @@ public class IndustryService : IIndustryService
     {
         if (takeAll)
         {
-            return _mapper.Map<IEnumerable<IndustryListItemDto>>(await _repo.GetAll().ToListAsync());
+            var entities = _repo.GetAll("CompanyIndustries", "CompanyIndustries.Company");
+            return _mapper.Map<IEnumerable<IndustryListItemDto>>(entities);
         }
         else
         {
-            return _mapper.Map<IEnumerable<IndustryListItemDto>>(await _repo.GetAll().Where(i=>i.IsDeleted==false).ToListAsync());
+            var entities = _repo.FindAll(i => i.IsDeleted == false, "CompanyIndustries", "CompanyIndustries.Company");
+            return _mapper.Map<IEnumerable<IndustryListItemDto>>(entities);
         }
     }
 
@@ -70,12 +81,12 @@ public class IndustryService : IIndustryService
 
         if(takeAll)
         {
-            entity = await _repo.GetByIdAsync(id);
+            entity = await _repo.GetByIdAsync(id, "CompanyIndustries", "CompanyIndustries.Company");
             if (entity is null) throw new IndustryNotFoundException();
         }
         else
         {
-            entity = await _repo.GetSingleAsync(i => i.Id == id && i.IsDeleted == false);
+            entity = await _repo.GetSingleAsync(i => i.Id == id && i.IsDeleted == false, "CompanyIndustries", "CompanyIndustries.Company");
             if (entity is null) throw new IndustryNotFoundException();
         }
 

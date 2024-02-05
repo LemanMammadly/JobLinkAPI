@@ -1,4 +1,5 @@
-﻿using JobLink.Core.Entities;
+﻿using JobLink.Business.Dtos.AppUserDtos;
+using JobLink.Core.Entities;
 
 namespace JobLink.Business.Dtos.CompanyDtos;
 
@@ -14,7 +15,9 @@ public record CompanyListItemDto
     public string? Website { get; set; }
     public DateTime CreateDate { get; set; }
     public bool IsDeleted { get; set; }
+    public AppUserInfoDto AppUser { get; set; }
     public IEnumerable<CompanyIndustryDto> CompanyIndustries { get; set; }
 }
+
 
 

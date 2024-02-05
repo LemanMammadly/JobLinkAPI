@@ -6,5 +6,6 @@ public class IndustryDetailItemDto
     public string Name { get; set; }
     public string Logo { get; set; }
     public bool IsDeleted { get; set; }
+    public IEnumerable<CompanyIndustryDto> CompanyIndustries { get; set; }
 }
 

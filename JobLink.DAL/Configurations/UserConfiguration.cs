@@ -14,6 +14,10 @@ public class UserConfiguration : IEntityTypeConfiguration<AppUser>
         builder.Property(u => u.Surname)
             .HasMaxLength(25)
             .IsRequired();
+        builder.HasOne(u => u.Company)
+            .WithOne(c => c.AppUser)
+            .HasForeignKey<Company>(u => u.AppUserId)
+            .IsRequired();
     }
 }
 
