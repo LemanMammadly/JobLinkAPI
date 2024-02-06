@@ -33,6 +33,7 @@
     <None Remove="Exceptions\IndustryExceptions\" />
     <None Remove="Dtos\CompanyDtos\" />
     <None Remove="Exceptions\CompanyExceptions\" />
+    <None Remove="Dtos\CategoryDtos\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dtos\" />
@@ -58,6 +59,7 @@
     <Folder Include="Exceptions\IndustryExceptions\" />
     <Folder Include="Dtos\CompanyDtos\" />
     <Folder Include="Exceptions\CompanyExceptions\" />
+    <Folder Include="Dtos\CategoryDtos\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.9.0" />

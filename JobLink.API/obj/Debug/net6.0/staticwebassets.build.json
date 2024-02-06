@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "RQ03TDbZrMHp1VgWaC+wvtq28SfLc2oz7c06lafsBz8=",
+  "Hash": "hAWyNBqS+GrPSrAhnLoQ+u5ZzbrbNngh5Bn+ezRw5+U=",
   "Source": "JobLink.API",
   "BasePath": "_content/JobLink.API",
   "Mode": "Default",
@@ -66,6 +66,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/imgs/.DS_Store"
+    },
+    {
+      "Identity": "/Users/imac/Desktop/JobLink/JobLink.API/wwwroot/imgs/category/66d0adcb-5acd-49a2-9871-e5d9ccefbe15.jpg",
+      "SourceId": "JobLink.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/imac/Desktop/JobLink/JobLink.API/wwwroot/",
+      "BasePath": "_content/JobLink.API",
+      "RelativePath": "imgs/category/66d0adcb-5acd-49a2-9871-e5d9ccefbe15.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/imgs/category/66d0adcb-5acd-49a2-9871-e5d9ccefbe15.jpg"
     },
     {
       "Identity": "/Users/imac/Desktop/JobLink/JobLink.API/wwwroot/imgs/company/38f84ff7-687c-4afa-b7d6-f2bafc772f7b.jpg",
