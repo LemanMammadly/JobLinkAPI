@@ -22,6 +22,73 @@ namespace JobLink.DAL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("JobLink.Core.Entities.Advertisement", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Ability")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreateDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("DATEADD(hour, 4, GETUTCDATE())");
+
+                    b.Property<string>("Education")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Experience")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("JobDesc")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Reqruiment")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal?>("Salary")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ViewCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("WorkGraphic")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("Advertisements");
+                });
+
             modelBuilder.Entity("JobLink.Core.Entities.AppUser", b =>
                 {
                     b.Property<string>("Id")
@@ -400,6 +467,17 @@ namespace JobLink.DAL.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("JobLink.Core.Entities.Advertisement", b =>
+                {
+                    b.HasOne("JobLink.Core.Entities.Category", "Category")
+                        .WithMany("Advertisements")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
             modelBuilder.Entity("JobLink.Core.Entities.Company", b =>
                 {
                     b.HasOne("JobLink.Core.Entities.AppUser", "AppUser")
@@ -497,6 +575,11 @@ namespace JobLink.DAL.Migrations
                     b.Navigation("Company");
 
                     b.Navigation("EmailToken");
+                });
+
+            modelBuilder.Entity("JobLink.Core.Entities.Category", b =>
+                {
+                    b.Navigation("Advertisements");
                 });
 
             modelBuilder.Entity("JobLink.Core.Entities.Company", b =>

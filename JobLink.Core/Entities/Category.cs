@@ -6,6 +6,8 @@ public class Category:BaseEntity
 {
     public string Name { get; set; }
     public string Logo { get; set; }
+    public ICollection<Advertisement> Advertisements { get; set; }
 }
+
 
 
