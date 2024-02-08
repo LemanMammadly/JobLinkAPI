@@ -16,6 +16,7 @@ using System.Text;
 using Microsoft.OpenApi.Models;
 using JobLink.Business.Constants;
 using JobLink.DAL;
+using Hangfire;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -25,6 +26,15 @@ var configuration = builder.Configuration;
 
 builder.Services.AddControllers().AddNewtonsoftJson(opt =>
     opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+var hangfireConnectionString = builder.Configuration["ConnectionStrings:Hangfire"];
+builder.Services.AddHangfire(x =>
+{
+    x.UseSqlServerStorage(hangfireConnectionString);
+    RecurringJob.AddOrUpdate<AdvertisementService>(a => a.CheckStatus(), "0 0 * * *");
+});
+
+builder.Services.AddHangfireServer();
 
 
 builder.Services.AddControllers();
@@ -128,6 +138,8 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 
 app.UseAuthorization();
+
+app.UseHangfireDashboard();
 
 //app.UseCustomExceptionHandler();
 

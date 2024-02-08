@@ -31,6 +31,20 @@ public class AdvertisementService : IAdvertisementService
         _userManager = userManager;
     }
 
+    public async Task CheckStatus()
+    {
+        var advertisements = _repo.GetAll();
+
+        foreach (var advertisement in advertisements)
+        {
+            if(advertisement.EndDate<=DateTime.UtcNow.AddHours(4))
+            {
+                advertisement.Status = AdvertisementStatus.Deactive;
+            }
+        }
+        await _repo.SaveAsync();
+    }
+
     public async Task CreateAsync(CreateAdvertisementDto dto)
     {
         if (String.IsNullOrWhiteSpace(userId)) throw new ArgumentIsNullException();

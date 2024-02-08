@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "6R4EBNst5Bu/6jFjVh5kUUkUZ/BsDrXB3CgwM6ybYyststFXTgMAXr8L8FksTp38ntBAl5bvtcTQB0EUaTsh9w==",
+  "dgSpecHash": "rPvvuQ1swr+zveqw+FDrgioQjZrbYFwdEiXolgbrdFDsd+1m//eVmMO62T91HieVacJbqyVR/DjG6vZ/Hyuvkg==",
   "success": true,
   "projectFilePath": "/Users/imac/Desktop/JobLink/JobLink.API/JobLink.API.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,11 @@
     "/Users/imac/.nuget/packages/fluentvalidation/11.9.0/fluentvalidation.11.9.0.nupkg.sha512",
     "/Users/imac/.nuget/packages/fluentvalidation.aspnetcore/11.3.0/fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
     "/Users/imac/.nuget/packages/fluentvalidation.dependencyinjectionextensions/11.5.1/fluentvalidation.dependencyinjectionextensions.11.5.1.nupkg.sha512",
+    "/Users/imac/.nuget/packages/hangfire/1.8.9/hangfire.1.8.9.nupkg.sha512",
+    "/Users/imac/.nuget/packages/hangfire.aspnetcore/1.8.9/hangfire.aspnetcore.1.8.9.nupkg.sha512",
+    "/Users/imac/.nuget/packages/hangfire.core/1.8.9/hangfire.core.1.8.9.nupkg.sha512",
+    "/Users/imac/.nuget/packages/hangfire.netcore/1.8.9/hangfire.netcore.1.8.9.nupkg.sha512",
+    "/Users/imac/.nuget/packages/hangfire.sqlserver/1.8.9/hangfire.sqlserver.1.8.9.nupkg.sha512",
     "/Users/imac/.nuget/packages/humanizer.core/2.8.26/humanizer.core.2.8.26.nupkg.sha512",
     "/Users/imac/.nuget/packages/mailkit/3.2.0/mailkit.3.2.0.nupkg.sha512",
     "/Users/imac/.nuget/packages/microsoft.aspnetcore.authentication/2.2.0/microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",

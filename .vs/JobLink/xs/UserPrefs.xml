@@ -6,30 +6,27 @@
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench ActiveDocument="JobLink.Business/Dtos/AdvertisementDtos/CreateAdvertisementDto.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="JobLink.API/Controllers/AdvertisementsController.cs">
     <Files>
-      <File FileName="JobLink.Business/Dtos/AdvertisementDtos/CreateAdvertisementDto.cs" Line="35" Column="71" />
-      <File FileName="JobLink.Core/Entities/Advertisement.cs" Line="29" Column="1" />
-      <File FileName="JobLink.DAL/Configurations/AdvertisementConfiguration.cs" Line="7" Column="52" />
-      <File FileName="JobLink.Business/Dtos/CategoryDtos/CreateCategoryDto.cs" Line="1" Column="1" />
+      <File FileName="JobLink.Business/Services/Implements/AdvertisementService.cs" Line="62" Column="39" />
+      <File FileName="JobLink.Business/Services/Interfaces/IAdvertisementService.cs" Line="11" Column="1" />
+      <File FileName="JobLink.API/Controllers/AdvertisementsController.cs" Line="20" Column="10" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="JobLink" expanded="True">
-            <Node name="JobLink.Business">
-              <Node name="Dtos" expanded="True">
-                <Node name="AdvertisementDtos" expanded="True">
-                  <Node name="CreateAdvertisementDto.cs" selected="True" />
-                </Node>
+            <Node name="JobLink.API">
+              <Node name="Controllers" expanded="True" />
+            </Node>
+            <Node name="JobLink.Business" expanded="True">
+              <Node name="Services" expanded="True">
+                <Node name="Implements" expanded="True" />
+                <Node name="Interfaces" expanded="True" />
               </Node>
             </Node>
-            <Node name="JobLink.Core">
-              <Node name="Entities" expanded="True" />
-            </Node>
-            <Node name="JobLink.DAL">
-              <Node name="Configurations" expanded="True" />
-            </Node>
+            <Node name="JobLink.Core" expanded="True" />
+            <Node name="JobLink.DAL" expanded="True" />
           </Node>
         </State>
       </Pad>

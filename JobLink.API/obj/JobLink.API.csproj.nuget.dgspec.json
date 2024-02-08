@@ -50,6 +50,14 @@
               "target": "Package",
               "version": "[11.3.0, )"
             },
+            "Hangfire": {
+              "target": "Package",
+              "version": "[1.8.9, )"
+            },
+            "Hangfire.AspNetCore": {
+              "target": "Package",
+              "version": "[1.8.9, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[6.0.25, )"
