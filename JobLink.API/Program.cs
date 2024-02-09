@@ -32,6 +32,7 @@ builder.Services.AddHangfire(x =>
 {
     x.UseSqlServerStorage(hangfireConnectionString);
     RecurringJob.AddOrUpdate<AdvertisementService>(a => a.CheckStatus(), "0 0 * * *");
+    RecurringJob.AddOrUpdate<AdvertisementService>(a => a.ExpiredDeletion(), "0 0 * * *");
 });
 
 builder.Services.AddHangfireServer();

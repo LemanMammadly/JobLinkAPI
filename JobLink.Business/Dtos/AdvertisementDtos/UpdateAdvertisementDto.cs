@@ -8,14 +8,12 @@ public record UpdateAdvertisementDto
     public string City { get; set; }
     public decimal? Salary { get; set; }
     public string WorkGraphic { get; set; }
-    public DateTime EndDate { get; set; }
     public string? Ability { get; set; }
     public string JobDesc { get; set; }
     public string Reqruiment { get; set; }
     public string? Experience { get; set; }
     public string? Education { get; set; }
     public int? CategoryId { get; set; }
-    public bool IsDeleted { get; set; }
 }
 
 
@@ -35,9 +33,6 @@ public class UpdateAdvertisementDtoValidator:AbstractValidator<UpdateAdvertiseme
         RuleFor(a => a.WorkGraphic)
             .NotEmpty().WithMessage("Advertisement workGraphic not empty")
             .NotNull().WithMessage("Advertisement workGraphic not null");
-        RuleFor(a => a.EndDate)
-            .NotEmpty().WithMessage("Advertisement enddate not empty")
-            .NotNull().WithMessage("Advertisement enddate not null");
         RuleFor(a => a.Ability)
             .MinimumLength(20).WithMessage("Advertisement ability minimum length 20")
             .When(a => a.Ability != null);
