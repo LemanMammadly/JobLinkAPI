@@ -18,9 +18,14 @@ public class Advertisement:BaseEntity
     public string? Education { get; set; }
     public int ViewCount { get; set; }
     public AdvertisementStatus Status { get; set; }
+    public State State { get; set; }
     public Category Category { get; set; }
     public int CategoryId { get; set; }
+    public Company Company { get; set; }
+    public int CompanyId { get; set; }
 }
+
+
 
 
 

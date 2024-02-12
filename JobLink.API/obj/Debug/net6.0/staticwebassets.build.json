@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "hAWyNBqS+GrPSrAhnLoQ+u5ZzbrbNngh5Bn+ezRw5+U=",
+  "Hash": "+a9qTvIrK7qAgLDFccZS3YZyKmlcHiojiehTm3LOiWw=",
   "Source": "JobLink.API",
   "BasePath": "_content/JobLink.API",
   "Mode": "Default",
@@ -85,6 +85,23 @@
       "OriginalItemSpec": "wwwroot/imgs/category/66d0adcb-5acd-49a2-9871-e5d9ccefbe15.jpg"
     },
     {
+      "Identity": "/Users/imac/Desktop/JobLink/JobLink.API/wwwroot/imgs/category/ae5f9449-5d82-40dc-b311-b0940e14cea7.jpg",
+      "SourceId": "JobLink.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/imac/Desktop/JobLink/JobLink.API/wwwroot/",
+      "BasePath": "_content/JobLink.API",
+      "RelativePath": "imgs/category/ae5f9449-5d82-40dc-b311-b0940e14cea7.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/imgs/category/ae5f9449-5d82-40dc-b311-b0940e14cea7.jpg"
+    },
+    {
       "Identity": "/Users/imac/Desktop/JobLink/JobLink.API/wwwroot/imgs/company/38f84ff7-687c-4afa-b7d6-f2bafc772f7b.jpg",
       "SourceId": "JobLink.API",
       "SourceType": "Discovered",
@@ -151,6 +168,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/imgs/company/6d540326-239f-4b04-8b77-d3c6a94b221c.jpg"
+    },
+    {
+      "Identity": "/Users/imac/Desktop/JobLink/JobLink.API/wwwroot/imgs/company/78fd3eae-9797-4b96-a371-cbfefa1fd730.jpg",
+      "SourceId": "JobLink.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/imac/Desktop/JobLink/JobLink.API/wwwroot/",
+      "BasePath": "_content/JobLink.API",
+      "RelativePath": "imgs/company/78fd3eae-9797-4b96-a371-cbfefa1fd730.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/imgs/company/78fd3eae-9797-4b96-a371-cbfefa1fd730.jpg"
     },
     {
       "Identity": "/Users/imac/Desktop/JobLink/JobLink.API/wwwroot/imgs/company/feb10d71-73a4-4ef9-9b23-2f6c43d62797.jpg",

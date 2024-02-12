@@ -26,6 +26,9 @@ public class AdvertisementConfiguration : IEntityTypeConfiguration<Advertisement
         builder.HasOne(a => a.Category)
             .WithMany(c => c.Advertisements)
             .HasForeignKey(a => a.CategoryId);
+        builder.HasOne(a => a.Company)
+            .WithMany(c => c.Advertisements)
+            .HasForeignKey(a => a.CompanyId);
     }
 }
 

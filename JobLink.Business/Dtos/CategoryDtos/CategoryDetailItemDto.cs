@@ -1,4 +1,6 @@
-﻿namespace JobLink.Business.Dtos.CategoryDtos;
+﻿using JobLink.Business.Dtos.AdvertisementDtos;
+
+namespace JobLink.Business.Dtos.CategoryDtos;
 
 public record CategoryDetailItemDto
 {
@@ -6,5 +8,6 @@ public record CategoryDetailItemDto
     public string Name { get; set; }
     public string Logo { get; set; }
     public bool IsDeleted { get; set; }
+    public IEnumerable<AdvertisementInfoDto> Advertisements { get; set; }
 }
 

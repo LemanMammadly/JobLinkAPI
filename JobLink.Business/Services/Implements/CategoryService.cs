@@ -53,12 +53,12 @@ public class CategoryService : ICategoryService
     {
         if(takeAll)
         {
-            var entities = _repo.GetAll();
+            var entities = _repo.GetAll("Advertisements");
             return _mapper.Map<IEnumerable<CategoryListItemDto>>(entities);
         }
         else
         {
-            var entites = _repo.FindAll(c => c.IsDeleted == false);
+            var entites = _repo.FindAll(c => c.IsDeleted == false, "Advertisements");
             return _mapper.Map<IEnumerable<CategoryListItemDto>>(entites);
         }
     }
@@ -70,12 +70,12 @@ public class CategoryService : ICategoryService
 
         if(takeAll)
         {
-            category = await _repo.GetByIdAsync(id);
+            category = await _repo.GetByIdAsync(id, "Advertisements");
             if (category is null) throw new NotFoundException<Category>();
         }
         else
         {
-            category = await _repo.GetSingleAsync(c => c.IsDeleted == false && c.Id == id);
+            category = await _repo.GetSingleAsync(c => c.IsDeleted == false && c.Id == id, "Advertisements");
             if (category is null) throw new NotFoundException<Category>();
         }
 

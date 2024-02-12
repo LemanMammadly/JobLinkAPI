@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using JobLink.Business.Dtos.AdvertisementDtos;
 using JobLink.Business.Services.Interfaces;
+using JobLink.Core.Enums;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -25,6 +26,12 @@ namespace JobLink.API.Controllers
         public async Task<IActionResult> Get()
         {
             return Ok(await _service.GetAllAsync(true));
+        }
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetAccept()
+        {
+            return Ok(await _service.GetAllAcceptAsync());
         }
 
         [HttpGet("[action]/{id}")]
@@ -65,6 +72,27 @@ namespace JobLink.API.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             await _service.DeleteAsync(id);
+            return NoContent();
+        }
+
+        [HttpPost("[action]/{id}")]
+        public async Task<IActionResult> Accept(int id)
+        {
+            await _service.AcceptAdvertisement(id);
+            return NoContent();
+        }
+
+        [HttpPost("[action]/{id}")]
+        public async Task<IActionResult> Reject(int id)
+        {
+            await _service.RejectAdvertisement(id);
+            return NoContent();
+        }
+
+        [HttpPost("[action]/{id}")]
+        public async Task<IActionResult> ChangeState(int id,State state)
+        {
+            await _service.UpdateStateAsync(id,state);
             return NoContent();
         }
     }

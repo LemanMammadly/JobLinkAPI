@@ -10,6 +10,7 @@ using JobLink.Core.Enums;
 using JobLink.DAL.Repositories.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace JobLink.Business.Services.Implements;
 
@@ -32,6 +33,16 @@ public class AdvertisementService : IAdvertisementService
         _userManager = userManager;
     }
 
+    public async Task AcceptAdvertisement(int id)
+    {
+        if (id <= 0) throw new NegativeIdException<Advertisement>();
+        var advertisement = await _repo.GetSingleAsync(a=>a.Id==id && a.IsDeleted==false && a.State==State.Pending);
+        if (advertisement is null || advertisement.IsDeleted == true) throw new NotFoundException<Advertisement>();
+
+        advertisement.State = State.Accept;
+        await _repo.SaveAsync();
+    }
+
     public async Task CheckStatus()
     {
         var advertisements = _repo.FindAll(a=>a.IsDeleted==false);
@@ -47,20 +58,29 @@ public class AdvertisementService : IAdvertisementService
     }
 
 
-
     public async Task CreateAsync(CreateAdvertisementDto dto)
     {
         if (String.IsNullOrWhiteSpace(userId)) throw new ArgumentIsNullException();
-        var user = await _userManager.FindByIdAsync(userId);
+        var user = await _userManager.Users.Include(a => a.Company).FirstOrDefaultAsync(u => u.Id == userId);
         if (user is null) throw new AppUserNotFoundException();
 
         var advertisement = _mapper.Map<Advertisement>(dto);
         advertisement.Status = AdvertisementStatus.Active;
+        advertisement.State = State.Pending;
 
         var category = await _catrepo.GetByIdAsync(dto.CategoryId);
         if (category is null || category.IsDeleted) throw new NotFoundException<Category>();
 
         advertisement.EndDate = DateTime.Now.AddDays(31).AddHours(4);
+
+        if(user.Company != null)
+        {
+            advertisement.CompanyId = user.Company.Id;  
+        }
+        else
+        {
+            throw new UserHasNotCompanyException();
+        }
 
         await _repo.CreateAsync(advertisement);
         await _repo.SaveAsync();
@@ -88,6 +108,12 @@ public class AdvertisementService : IAdvertisementService
             }
         }
         await _repo.SaveAsync();
+    }
+
+    public async Task<IEnumerable<AdvertisementListItemDto>> GetAllAcceptAsync()
+    {
+        var advertisements = _repo.FindAll(a => a.IsDeleted == false && a.State == State.Accept);
+        return _mapper.Map<IEnumerable<AdvertisementListItemDto>>(advertisements);
     }
 
     public async Task<IEnumerable<AdvertisementListItemDto>> GetAllAsync(bool takeAl)
@@ -123,6 +149,16 @@ public class AdvertisementService : IAdvertisementService
 
         await _repo.SaveAsync();
         return _mapper.Map<AdvertisementDetailItemDto>(advertisement);
+    }
+
+    public async Task RejectAdvertisement(int id)
+    {
+        if (id <= 0) throw new NegativeIdException<Advertisement>();
+        var advertisement = await _repo.GetSingleAsync(a=>a.Id==id && a.IsDeleted == false && a.State==State.Pending);
+        if (advertisement is null || advertisement.IsDeleted == true) throw new NotFoundException<Advertisement>();
+
+        advertisement.State = State.Reject;
+        await _repo.SaveAsync();
     }
 
     public async Task ReverteSoftDeleteAsync(int id)
@@ -166,6 +202,16 @@ public class AdvertisementService : IAdvertisementService
         }
 
         _mapper.Map(dto, advertisement);
+        await _repo.SaveAsync();
+    }
+
+    public async Task UpdateStateAsync(int id, State state)
+    {
+        if (id <= 0) throw new NegativeIdException<Advertisement>();
+        var advertisement = await _repo.GetSingleAsync(a => a.Id == id && a.IsDeleted == false);
+        if (advertisement is null) throw new NotFoundException<Advertisement>();
+
+        advertisement.State = state;
         await _repo.SaveAsync();
     }
 }

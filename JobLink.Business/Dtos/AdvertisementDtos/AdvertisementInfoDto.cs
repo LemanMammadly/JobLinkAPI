@@ -2,7 +2,7 @@
 
 namespace JobLink.Business.Dtos.AdvertisementDtos;
 
-public record AdvertisementDetailItemDto
+public record AdvertisementInfoDto
 {
     public int Id { get; set; }
     public string Title { get; set; }
@@ -19,7 +19,6 @@ public record AdvertisementDetailItemDto
     public int ViewCount { get; set; }
     public AdvertisementStatus Status { get; set; }
     public State State { get; set; }
-    public int CategoryId { get; set; }
     public bool IsDeleted { get; set; }
 }
 

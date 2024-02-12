@@ -1,4 +1,5 @@
-﻿using JobLink.Business.Dtos.AppUserDtos;
+﻿using JobLink.Business.Dtos.AdvertisementDtos;
+using JobLink.Business.Dtos.AppUserDtos;
 using JobLink.Core.Entities;
 
 namespace JobLink.Business.Dtos.CompanyDtos;
@@ -17,7 +18,9 @@ public record CompanyListItemDto
     public bool IsDeleted { get; set; }
     public AppUserInfoDto AppUser { get; set; }
     public IEnumerable<CompanyIndustryDto> CompanyIndustries { get; set; }
+    public IEnumerable<AdvertisementInfoDto> Advertisements { get; set; }
 }
+
 
 
 

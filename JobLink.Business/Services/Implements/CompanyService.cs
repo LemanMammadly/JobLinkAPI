@@ -100,12 +100,12 @@ public class CompanyService : ICompanyService
     {
         if(takeAll)
         {
-            var entities = await _repo.GetAll("CompanyIndustries", "CompanyIndustries.Industry", "AppUser").ToListAsync();
+            var entities = await _repo.GetAll("CompanyIndustries", "CompanyIndustries.Industry", "AppUser", "Advertisements").ToListAsync();
             return _mapper.Map<IEnumerable<CompanyListItemDto>>(entities);
         }
         else
         {
-            var entities =await _repo.FindAll(c=>c.IsDeleted==false,"CompanyIndustries", "CompanyIndustries.Industry", "AppUser").ToListAsync();
+            var entities =await _repo.FindAll(c=>c.IsDeleted==false,"CompanyIndustries", "CompanyIndustries.Industry", "AppUser", "Advertisements").ToListAsync();
             return _mapper.Map<IEnumerable<CompanyListItemDto>>(entities);
         }
     }
@@ -117,12 +117,12 @@ public class CompanyService : ICompanyService
 
         if(takeAll)
         {
-            entity = await _repo.GetByIdAsync(id, "CompanyIndustries", "CompanyIndustries.Industry", "AppUser");
+            entity = await _repo.GetByIdAsync(id, "CompanyIndustries", "CompanyIndustries.Industry", "AppUser", "Advertisements");
             if (entity is null) throw new NotFoundException<Company>();
         }
         else
         {
-            entity = await _repo.GetSingleAsync(c => c.Id == id && c.IsDeleted == false, "CompanyIndustries", "CompanyIndustries.Industry", "AppUser");
+            entity = await _repo.GetSingleAsync(c => c.Id == id && c.IsDeleted == false, "CompanyIndustries", "CompanyIndustries.Industry", "AppUser", "Advertisements");
             if (entity is null) throw new NotFoundException<Company>();
         }
         return _mapper.Map<CompanyDetailItemDto>(entity);
