@@ -22,7 +22,7 @@ namespace JobLink.DAL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("JobLink.Core.Entities.Advertisement", b =>
+            modelBuilder.Entity("JobLink.Core.Entities.Ability", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -30,8 +30,25 @@ namespace JobLink.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("Ability")
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Ability");
+                });
+
+            modelBuilder.Entity("JobLink.Core.Entities.Advertisement", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -48,8 +65,8 @@ namespace JobLink.DAL.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("DATEADD(hour, 4, GETUTCDATE())");
 
-                    b.Property<string>("Education")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("Education")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
@@ -95,6 +112,32 @@ namespace JobLink.DAL.Migrations
                     b.HasIndex("CompanyId");
 
                     b.ToTable("Advertisements");
+                });
+
+            modelBuilder.Entity("JobLink.Core.Entities.AdvertisementAbilities", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AbilityId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("AdvertisementId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AbilityId");
+
+                    b.HasIndex("AdvertisementId");
+
+                    b.ToTable("AdvertisementAbilities");
                 });
 
             modelBuilder.Entity("JobLink.Core.Entities.AppUser", b =>
@@ -494,6 +537,25 @@ namespace JobLink.DAL.Migrations
                     b.Navigation("Company");
                 });
 
+            modelBuilder.Entity("JobLink.Core.Entities.AdvertisementAbilities", b =>
+                {
+                    b.HasOne("JobLink.Core.Entities.Ability", "Ability")
+                        .WithMany("AdvertisementAbilities")
+                        .HasForeignKey("AbilityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("JobLink.Core.Entities.Advertisement", "Advertisement")
+                        .WithMany("AdvertisementAbilities")
+                        .HasForeignKey("AdvertisementId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ability");
+
+                    b.Navigation("Advertisement");
+                });
+
             modelBuilder.Entity("JobLink.Core.Entities.Company", b =>
                 {
                     b.HasOne("JobLink.Core.Entities.AppUser", "AppUser")
@@ -584,6 +646,16 @@ namespace JobLink.DAL.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("JobLink.Core.Entities.Ability", b =>
+                {
+                    b.Navigation("AdvertisementAbilities");
+                });
+
+            modelBuilder.Entity("JobLink.Core.Entities.Advertisement", b =>
+                {
+                    b.Navigation("AdvertisementAbilities");
                 });
 
             modelBuilder.Entity("JobLink.Core.Entities.AppUser", b =>

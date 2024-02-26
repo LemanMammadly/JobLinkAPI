@@ -17,9 +17,10 @@ public record AdvertisementDetailItemDto
     public string? Experience { get; set; }
     public string? Education { get; set; }
     public int ViewCount { get; set; }
-    public AdvertisementStatus Status { get; set; }
-    public State State { get; set; }
+    public string Status { get; set; }
+    public string State { get; set; }
     public int CategoryId { get; set; }
     public bool IsDeleted { get; set; }
+    public IEnumerable<AdvertisementAbilityDto> AdvertisementAbilities { get; set; }
 }
 

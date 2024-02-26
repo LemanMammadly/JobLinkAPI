@@ -22,8 +22,9 @@ public class AdvertisementService : IAdvertisementService
     readonly IHttpContextAccessor _httpContextAccessor;
     readonly string? userId;
     readonly UserManager<AppUser> _userManager;
+    readonly IAbilityRepository _abilityRepository;
 
-    public AdvertisementService(IAdvertisementRepository repo, IMapper mapper, ICategoryRepository catrepo, IHttpContextAccessor httpContextAccessor, UserManager<AppUser> userManager)
+    public AdvertisementService(IAdvertisementRepository repo, IMapper mapper, ICategoryRepository catrepo, IHttpContextAccessor httpContextAccessor, UserManager<AppUser> userManager, IAbilityRepository abilityRepository)
     {
         _repo = repo;
         _mapper = mapper;
@@ -31,6 +32,7 @@ public class AdvertisementService : IAdvertisementService
         _httpContextAccessor = httpContextAccessor;
         userId = _httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         _userManager = userManager;
+        _abilityRepository = abilityRepository;
     }
 
     public async Task AcceptAdvertisement(int id)
@@ -71,7 +73,20 @@ public class AdvertisementService : IAdvertisementService
         var category = await _catrepo.GetByIdAsync(dto.CategoryId);
         if (category is null || category.IsDeleted) throw new NotFoundException<Category>();
 
+
+        List<AdvertisementAbilities> advertisementAbilities = new List<AdvertisementAbilities>();
+        if(dto.AbilityIds != null)
+        {
+            foreach (var id in dto.AbilityIds)
+            {
+                var ability = await _abilityRepository.GetByIdAsync(id);
+                if (ability is null || ability.IsDeleted==true) throw new NotFoundException<Ability>();
+                advertisementAbilities.Add(new AdvertisementAbilities { Ability = ability });
+            }
+        }
+
         advertisement.EndDate = DateTime.Now.AddDays(31).AddHours(4);
+        advertisement.AdvertisementAbilities = advertisementAbilities;
 
         if(user.Company != null)
         {
@@ -112,7 +127,7 @@ public class AdvertisementService : IAdvertisementService
 
     public async Task<IEnumerable<AdvertisementListItemDto>> GetAllAcceptAsync()
     {
-        var advertisements = _repo.FindAll(a => a.IsDeleted == false && a.State == State.Accept);
+        var advertisements = _repo.FindAll(a => a.IsDeleted == false && a.State == State.Accept, "AdvertisementAbilities", "AdvertisementAbilities.Ability");
         return _mapper.Map<IEnumerable<AdvertisementListItemDto>>(advertisements);
     }
 
@@ -120,12 +135,12 @@ public class AdvertisementService : IAdvertisementService
     {
         if(takeAl)
         {
-            var advertisements = _repo.GetAll();
+            var advertisements = _repo.GetAll("AdvertisementAbilities", "AdvertisementAbilities.Ability");
             return _mapper.Map<IEnumerable<AdvertisementListItemDto>>(advertisements);
         }
         else
         {
-            var advertisements = _repo.FindAll(a => a.IsDeleted == false);
+            var advertisements = _repo.FindAll(a => a.IsDeleted == false, "AdvertisementAbilities", "AdvertisementAbilities.Ability");
             return _mapper.Map<IEnumerable<AdvertisementListItemDto>>(advertisements);
         }
     }
@@ -137,12 +152,12 @@ public class AdvertisementService : IAdvertisementService
 
         if(takeAll)
         {
-            advertisement = await _repo.GetByIdAsync(id);
+            advertisement = await _repo.GetByIdAsync(id,"AdvertisementAbilities", "AdvertisementAbilities.Ability");
             if (advertisement is null) throw new NotFoundException<Advertisement>();
         }
         else
         {
-            advertisement = await _repo.GetSingleAsync(a => a.IsDeleted == false && a.Id == id);
+            advertisement = await _repo.GetSingleAsync(a => a.IsDeleted == false && a.Id == id, "AdvertisementAbilities", "AdvertisementAbilities.Ability");
             if (advertisement is null) throw new NotFoundException<Advertisement>();
             advertisement.ViewCount++;
         }
@@ -188,7 +203,7 @@ public class AdvertisementService : IAdvertisementService
     public async Task UpdateAsync(int id, UpdateAdvertisementDto dto)
     {
         if (id <= 0) throw new NegativeIdException<Advertisement>();
-        var advertisement = await _repo.GetSingleAsync(a => a.Id == id && a.IsDeleted == false);
+        var advertisement = await _repo.GetSingleAsync(a => a.Id == id && a.IsDeleted == false, "AdvertisementAbilities", "AdvertisementAbilities.Ability");
         if (advertisement is null) throw new NotFoundException<Advertisement>();
 
         if(dto.CategoryId != null)
@@ -201,7 +216,20 @@ public class AdvertisementService : IAdvertisementService
             throw new AdvertisementCategoryCouldNotBeNullException();
         }
 
-        _mapper.Map(dto, advertisement);
+        List<AdvertisementAbilities> advertisementAbilities = new List<AdvertisementAbilities>();
+        if (dto.AbilityIds != null)
+        {
+            foreach (var iditem in dto.AbilityIds)
+            {
+                var ability = await _abilityRepository.GetByIdAsync(iditem);
+                if (ability is null || ability.IsDeleted == true) throw new NotFoundException<Ability>();
+                advertisementAbilities.Add(new AdvertisementAbilities { Ability = ability });
+            }
+        }
+
+        var newEntity = _mapper.Map(dto, advertisement);
+        newEntity.AdvertisementAbilities = advertisementAbilities;
+
         await _repo.SaveAsync();
     }
 

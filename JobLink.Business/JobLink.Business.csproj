@@ -36,6 +36,7 @@
     <None Remove="Dtos\CategoryDtos\" />
     <None Remove="Dtos\AdvertisementDtos\" />
     <None Remove="Exceptions\AdvertisementsException\" />
+    <None Remove="Dtos\AbilityDtos\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dtos\" />
@@ -64,6 +65,7 @@
     <Folder Include="Dtos\CategoryDtos\" />
     <Folder Include="Dtos\AdvertisementDtos\" />
     <Folder Include="Exceptions\AdvertisementsException\" />
+    <Folder Include="Dtos\AbilityDtos\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.9.0" />

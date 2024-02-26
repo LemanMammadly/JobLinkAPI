@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using JobLink.Core.Enums;
 
 namespace JobLink.Business.Dtos.AdvertisementDtos;
 
@@ -8,12 +9,12 @@ public record UpdateAdvertisementDto
     public string City { get; set; }
     public decimal? Salary { get; set; }
     public string WorkGraphic { get; set; }
-    public string? Ability { get; set; }
     public string JobDesc { get; set; }
     public string Reqruiment { get; set; }
     public string? Experience { get; set; }
-    public string? Education { get; set; }
+    public Education? Education { get; set; }
     public int? CategoryId { get; set; }
+    public List<int>? AbilityIds { get; set; }
 }
 
 
@@ -33,9 +34,9 @@ public class UpdateAdvertisementDtoValidator:AbstractValidator<UpdateAdvertiseme
         RuleFor(a => a.WorkGraphic)
             .NotEmpty().WithMessage("Advertisement workGraphic not empty")
             .NotNull().WithMessage("Advertisement workGraphic not null");
-        RuleFor(a => a.Ability)
-            .MinimumLength(20).WithMessage("Advertisement ability minimum length 20")
-            .When(a => a.Ability != null);
+        RuleFor(a => a.AbilityIds)
+            .Must(a => CheckSameId(a)).WithMessage("You cannot add same ability id")
+            .When(a => a.AbilityIds != null);
         RuleFor(a => a.JobDesc)
             .NotEmpty().WithMessage("Advertisement job description not empty")
             .NotNull().WithMessage("Advertisement job description not null");
@@ -46,10 +47,40 @@ public class UpdateAdvertisementDtoValidator:AbstractValidator<UpdateAdvertiseme
             .MinimumLength(20).WithMessage("Advertisement expreience minimum length 20")
             .When(a => a.Experience != null);
         RuleFor(a => a.Education)
-            .MinimumLength(20).WithMessage("Advertisement education minimum length 20")
+            .Must(BeAValidEducation)
+            .WithMessage("Invalid education")
             .When(a => a.Education != null);
         RuleFor(a => a.CategoryId)
             .GreaterThan(0).WithMessage("Advertisement category id must be greather than 0")
             .When(a => a.CategoryId != null);
+    }
+
+    private bool BeAValidEducation(Education? education)
+    {
+        return education.HasValue && Enum.IsDefined(typeof(Education), education.Value);
+    }
+
+    private bool CheckSameId(List<int> ids)
+    {
+        var encounteredIds = new HashSet<int>();
+
+        if (ids == null || ids.Count == 0)
+        {
+            return false;
+        }
+
+        foreach (var id in ids)
+        {
+            if (!encounteredIds.Contains(id))
+            {
+                encounteredIds.Add(id);
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

@@ -35,9 +35,15 @@ namespace JobLink.API.Controllers
         }
 
         [HttpGet("[action]/{id}")]
-        public async Task<IActionResult> Get(int id)
+        public async Task<IActionResult> GetTrue(int id)
         {
             return Ok(await _service.GetByIdAsync(id, true));
+        }
+
+        [HttpGet("[action]/{id}")]
+        public async Task<IActionResult> GetFalse(int id)
+        {
+            return Ok(await _service.GetByIdAsync(id, false));
         }
 
         [HttpPost("[action]")]

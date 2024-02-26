@@ -1,37 +1,36 @@
 ﻿<Properties StartupConfiguration="{2B17C4CB-5290-471D-A402-C8627FD2E3A0}|Default">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="JobLink.Business/Services/Implements/AdvertisementService.cs">
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.JobLink.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="JobLink.Business/Services/Implements/AbilityService.cs">
     <Files>
-      <File FileName="JobLink.Business/Dtos/AdvertisementDtos/AdvertisementDetailItemDto.cs" />
-      <File FileName="JobLink.Business/Services/Implements/AdvertisementService.cs" Line="9" Column="26" />
-      <File FileName="JobLink.Business/Services/Interfaces/IAdvertisementService.cs" Line="21" Column="1" />
+      <File FileName="JobLink.Business/Services/Interfaces/IAbilityService.cs" Line="8" Column="30" />
+      <File FileName="JobLink.Business/Services/Interfaces/IAdvertisementService.cs" Line="1" Column="1" />
+      <File FileName="JobLink.Business/Services/Implements/AbilityService.cs" Line="19" Column="105" />
+      <File FileName="JobLink.Business/Services/Implements/AdvertisementService.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="JobLink" expanded="True">
             <Node name="JobLink.Business">
-              <Node name="Dtos" expanded="True">
-                <Node name="AdvertisementDtos" expanded="True" />
+              <Node name="Exceptions" expanded="True">
+                <Node name="Common" expanded="True" />
               </Node>
               <Node name="Services" expanded="True">
                 <Node name="Implements" expanded="True">
-                  <Node name="AdvertisementService.cs" selected="True" />
+                  <Node name="AbilityService.cs" selected="True" />
                 </Node>
+                <Node name="Interfaces" expanded="True" />
               </Node>
-            </Node>
-            <Node name="JobLink.Core" expanded="True">
-              <Node name="Enums" expanded="True" />
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.JobLink.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

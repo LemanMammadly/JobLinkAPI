@@ -181,10 +181,7 @@ public class CompanyService : ICompanyService
             }
         }
         var newEntity = _mapper.Map(dto, entity);
-        if(dto.IndustryIds != null)
-        {
-            newEntity.CompanyIndustries = companyIndustries;
-        }
+        newEntity.CompanyIndustries = companyIndustries;
         await _repo.SaveAsync();
     }
 }
