@@ -37,6 +37,7 @@
     <None Remove="Dtos\AdvertisementDtos\" />
     <None Remove="Exceptions\AdvertisementsException\" />
     <None Remove="Dtos\AbilityDtos\" />
+    <None Remove="Dtos\JobDescriptionDtos\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dtos\" />
@@ -66,6 +67,7 @@
     <Folder Include="Dtos\AdvertisementDtos\" />
     <Folder Include="Exceptions\AdvertisementsException\" />
     <Folder Include="Dtos\AbilityDtos\" />
+    <Folder Include="Dtos\JobDescriptionDtos\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.9.0" />

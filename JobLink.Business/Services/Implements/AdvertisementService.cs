@@ -1,6 +1,7 @@
 ﻿using System.Security.Claims;
 using AutoMapper;
 using JobLink.Business.Dtos.AdvertisementDtos;
+using JobLink.Business.Dtos.JobDescriptionDtos;
 using JobLink.Business.Exceptions.AdvertisementsException;
 using JobLink.Business.Exceptions.AppUserExceptions;
 using JobLink.Business.Exceptions.Common;
@@ -23,8 +24,10 @@ public class AdvertisementService : IAdvertisementService
     readonly string? userId;
     readonly UserManager<AppUser> _userManager;
     readonly IAbilityRepository _abilityRepository;
+    readonly IJobDescriptionService _jobDescriptionService;
+    readonly IJobDescriptionRepository _jobRepo;
 
-    public AdvertisementService(IAdvertisementRepository repo, IMapper mapper, ICategoryRepository catrepo, IHttpContextAccessor httpContextAccessor, UserManager<AppUser> userManager, IAbilityRepository abilityRepository)
+    public AdvertisementService(IAdvertisementRepository repo, IMapper mapper, ICategoryRepository catrepo, IHttpContextAccessor httpContextAccessor, UserManager<AppUser> userManager, IAbilityRepository abilityRepository, IJobDescriptionService jobDescriptionService, IJobDescriptionRepository jobRepo)
     {
         _repo = repo;
         _mapper = mapper;
@@ -33,6 +36,8 @@ public class AdvertisementService : IAdvertisementService
         userId = _httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         _userManager = userManager;
         _abilityRepository = abilityRepository;
+        _jobDescriptionService = jobDescriptionService;
+        _jobRepo = jobRepo;
     }
 
     public async Task AcceptAdvertisement(int id)
@@ -99,6 +104,15 @@ public class AdvertisementService : IAdvertisementService
 
         await _repo.CreateAsync(advertisement);
         await _repo.SaveAsync();
+
+        if (dto.Desc != null)
+        {
+            foreach (var item in dto.Desc)
+            {
+                await _jobDescriptionService.CreateAsync(new CreateJobDescriptionDto { Description = item },advertisement.Id);
+            }
+            await _jobRepo.SaveAsync();
+        }
     }
 
     public async Task DeleteAsync(int id)
@@ -127,7 +141,7 @@ public class AdvertisementService : IAdvertisementService
 
     public async Task<IEnumerable<AdvertisementListItemDto>> GetAllAcceptAsync()
     {
-        var advertisements = _repo.FindAll(a => a.IsDeleted == false && a.State == State.Accept, "AdvertisementAbilities", "AdvertisementAbilities.Ability");
+        var advertisements = _repo.FindAll(a => a.IsDeleted == false && a.State == State.Accept, "AdvertisementAbilities", "AdvertisementAbilities.Ability", "JobDescriptions");
         return _mapper.Map<IEnumerable<AdvertisementListItemDto>>(advertisements);
     }
 
@@ -135,12 +149,12 @@ public class AdvertisementService : IAdvertisementService
     {
         if(takeAl)
         {
-            var advertisements = _repo.GetAll("AdvertisementAbilities", "AdvertisementAbilities.Ability");
+            var advertisements = _repo.GetAll("AdvertisementAbilities", "AdvertisementAbilities.Ability", "JobDescriptions");
             return _mapper.Map<IEnumerable<AdvertisementListItemDto>>(advertisements);
         }
         else
         {
-            var advertisements = _repo.FindAll(a => a.IsDeleted == false, "AdvertisementAbilities", "AdvertisementAbilities.Ability");
+            var advertisements = _repo.FindAll(a => a.IsDeleted == false, "AdvertisementAbilities", "AdvertisementAbilities.Ability", "JobDescriptions");
             return _mapper.Map<IEnumerable<AdvertisementListItemDto>>(advertisements);
         }
     }
@@ -152,12 +166,12 @@ public class AdvertisementService : IAdvertisementService
 
         if(takeAll)
         {
-            advertisement = await _repo.GetByIdAsync(id,"AdvertisementAbilities", "AdvertisementAbilities.Ability");
+            advertisement = await _repo.GetByIdAsync(id,"AdvertisementAbilities", "AdvertisementAbilities.Ability", "JobDescriptions");
             if (advertisement is null) throw new NotFoundException<Advertisement>();
         }
         else
         {
-            advertisement = await _repo.GetSingleAsync(a => a.IsDeleted == false && a.Id == id, "AdvertisementAbilities", "AdvertisementAbilities.Ability");
+            advertisement = await _repo.GetSingleAsync(a => a.IsDeleted == false && a.Id == id, "AdvertisementAbilities", "AdvertisementAbilities.Ability", "JobDescriptions");
             if (advertisement is null) throw new NotFoundException<Advertisement>();
             advertisement.ViewCount++;
         }
@@ -203,7 +217,7 @@ public class AdvertisementService : IAdvertisementService
     public async Task UpdateAsync(int id, UpdateAdvertisementDto dto)
     {
         if (id <= 0) throw new NegativeIdException<Advertisement>();
-        var advertisement = await _repo.GetSingleAsync(a => a.Id == id && a.IsDeleted == false, "AdvertisementAbilities", "AdvertisementAbilities.Ability");
+        var advertisement = await _repo.GetSingleAsync(a => a.Id == id && a.IsDeleted == false, "AdvertisementAbilities", "AdvertisementAbilities.Ability", "JobDescriptions");
         if (advertisement is null) throw new NotFoundException<Advertisement>();
 
         if(dto.CategoryId != null)
@@ -227,8 +241,19 @@ public class AdvertisementService : IAdvertisementService
             }
         }
 
+        List<JobDescription> jobDescriptions = new List<JobDescription>();
+        if(dto.JobDescriptions != null)
+        {
+            foreach (var desc in dto.JobDescriptions)
+            {
+                await _jobDescriptionService.UpdateAsync(desc);
+                await _jobRepo.SaveAsync();
+            }
+        }
+
         var newEntity = _mapper.Map(dto, advertisement);
         newEntity.AdvertisementAbilities = advertisementAbilities;
+        newEntity.JobDescriptions = jobDescriptions;
 
         await _repo.SaveAsync();
     }

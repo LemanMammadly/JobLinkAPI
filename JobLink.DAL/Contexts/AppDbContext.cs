@@ -16,6 +16,7 @@ public class AppDbContext:IdentityDbContext<AppUser>
     public DbSet<Category> Categories { get; set; }
     public DbSet<Advertisement> Advertisements { get; set; }
     public DbSet<AdvertisementAbilities> AdvertisementAbilities { get; set; }
+    public DbSet<JobDescription> jobDescriptions { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -23,6 +24,7 @@ public class AppDbContext:IdentityDbContext<AppUser>
         base.OnModelCreating(modelBuilder);
     }
 }
+
 
 
 

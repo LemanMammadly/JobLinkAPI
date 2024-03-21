@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using JobLink.Business.Dtos.JobDescriptionDtos;
 using JobLink.Core.Entities;
 using JobLink.Core.Enums;
 
@@ -11,7 +12,7 @@ public record CreateAdvertisementDto
     public decimal? Salary { get; set; }
     public string WorkGraphic { get; set; }
     public List<int>? AbilityIds { get; set; }
-    public string JobDesc { get; set; }
+    public List<string> Desc { get; set; }
     public string Reqruiment { get; set; }
     public string? Experience { get; set; }
     public Education? Education { get; set; }
@@ -39,10 +40,6 @@ public class CreateAdvertisementDtoValidator:AbstractValidator<CreateAdvertiseme
         RuleFor(a => a.AbilityIds)
             .Must(a => CheckSameId(a)).WithMessage("You cannot add same ability id")
             .When(a => a.AbilityIds != null);
-        RuleFor(a => a.JobDesc)
-            .MinimumLength(20).WithMessage("Advertisement job description minimum length 20")
-            .NotEmpty().WithMessage("Advertisement job description not empty")
-            .NotNull().WithMessage("Advertisement job description not null");
         RuleFor(a => a.Reqruiment)
             .MinimumLength(20).WithMessage("Advertisement reqruiment minimum length 20")
             .NotEmpty().WithMessage("Advertisement reqruiment not empty")

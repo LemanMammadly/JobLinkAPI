@@ -13,6 +13,7 @@ public static class RepositoryRegistration
         services.AddScoped<ICategoryRepository, CategoryRepository>();
         services.AddScoped<IAdvertisementRepository, AdvertisementRepository>();
         services.AddScoped<IAbilityRepository, AbilityRepository>();
+        services.AddScoped<IJobDescriptionRepository, JobDescriptionRepository>();
     }
 }
 
