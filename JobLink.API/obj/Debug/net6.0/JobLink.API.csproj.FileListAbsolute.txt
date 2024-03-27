@@ -113,3 +113,4 @@
 /Users/imac/Desktop/JobLink/JobLink.API/bin/Debug/net6.0/tr-TR/Hangfire.Core.resources.dll
 /Users/imac/Desktop/JobLink/JobLink.API/bin/Debug/net6.0/zh-TW/Hangfire.Core.resources.dll
 /Users/imac/Desktop/JobLink/JobLink.API/bin/Debug/net6.0/zh/Hangfire.Core.resources.dll
+/Users/imac/Desktop/JobLink/JobLink.API/bin/Debug/net6.0/Json.Net.dll

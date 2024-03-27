@@ -38,6 +38,7 @@
     <None Remove="Exceptions\AdvertisementsException\" />
     <None Remove="Dtos\AbilityDtos\" />
     <None Remove="Dtos\JobDescriptionDtos\" />
+    <None Remove="Dtos\ReqruimentDtos\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dtos\" />
@@ -68,6 +69,7 @@
     <Folder Include="Exceptions\AdvertisementsException\" />
     <Folder Include="Dtos\AbilityDtos\" />
     <Folder Include="Dtos\JobDescriptionDtos\" />
+    <Folder Include="Dtos\ReqruimentDtos\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.9.0" />
@@ -76,5 +78,7 @@
     <PackageReference Include="NETCore.MailKit" Version="2.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
+    <PackageReference Include="Json.Net" Version="1.0.33" />
+    <PackageReference Include="Newtonsoft.Json" Version="6.0.8" />
   </ItemGroup>
 </Project>

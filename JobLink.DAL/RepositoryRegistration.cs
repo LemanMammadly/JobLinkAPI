@@ -14,6 +14,7 @@ public static class RepositoryRegistration
         services.AddScoped<IAdvertisementRepository, AdvertisementRepository>();
         services.AddScoped<IAbilityRepository, AbilityRepository>();
         services.AddScoped<IJobDescriptionRepository, JobDescriptionRepository>();
+        services.AddScoped<IReqruimentRepository, ReqruimentRepository>();
     }
 }
 

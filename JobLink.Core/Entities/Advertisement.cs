@@ -11,7 +11,6 @@ public class Advertisement:BaseEntity
     public string WorkGraphic { get; set; }
     public DateTime CreateDate { get; set; }
     public DateTime EndDate { get; set; }
-    public string Reqruiment { get; set; }
     public string? Experience { get; set; }
     public Education? Education { get; set; }
     public int ViewCount { get; set; }
@@ -23,7 +22,9 @@ public class Advertisement:BaseEntity
     public int CompanyId { get; set; }
     public ICollection<AdvertisementAbilities>? AdvertisementAbilities { get; set; }
     public ICollection<JobDescription> JobDescriptions { get; set; }
+    public ICollection<Reqruiment> Reqruiments { get; set; }
 }
+
 
 
 

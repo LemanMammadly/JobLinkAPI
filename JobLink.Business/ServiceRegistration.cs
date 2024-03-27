@@ -20,6 +20,7 @@ public static class ServiceRegistration
         services.AddScoped<IAdvertisementService, AdvertisementService>();
         services.AddScoped<IAbilityService, AbilityService>();
         services.AddScoped<IJobDescriptionService, JobDescriptionService>();
+        services.AddScoped<IReqruimentService, ReqruimentService>();
     }
 } 
 

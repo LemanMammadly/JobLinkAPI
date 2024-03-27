@@ -39,9 +39,9 @@ namespace JobLink.API.Controllers
         }
 
         [HttpPut("[action]/{id}")]
-        public async Task<IActionResult> Put([FromForm]UpdateJobDescriptionDto dto)
+        public async Task<IActionResult> Put(int id,string desc)
         {
-            await _service.UpdateAsync(dto);
+            await _service.UpdateAsync(id,desc);
             return NoContent();
         }
 

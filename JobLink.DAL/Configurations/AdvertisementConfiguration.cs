@@ -19,8 +19,6 @@ public class AdvertisementConfiguration : IEntityTypeConfiguration<Advertisement
             .IsRequired();
         builder.Property(a => a.EndDate)
             .IsRequired();
-        builder.Property(a => a.Reqruiment)
-            .IsRequired();
         builder.HasOne(a => a.Category)
             .WithMany(c => c.Advertisements)
             .HasForeignKey(a => a.CategoryId);

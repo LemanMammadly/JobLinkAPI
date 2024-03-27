@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "rPvvuQ1swr+zveqw+FDrgioQjZrbYFwdEiXolgbrdFDsd+1m//eVmMO62T91HieVacJbqyVR/DjG6vZ/Hyuvkg==",
+  "dgSpecHash": "s34nOuOSmiOpThEDv/5PXB56TqXsv7Dpjp7jyNpwldMQmAcNHipkQv1Uwq8Ptyla4gJYq274XfhTZKHTx3N+IA==",
   "success": true,
   "projectFilePath": "/Users/imac/Desktop/JobLink/JobLink.API/JobLink.API.csproj",
   "expectedPackageFiles": [
@@ -15,6 +15,7 @@
     "/Users/imac/.nuget/packages/hangfire.netcore/1.8.9/hangfire.netcore.1.8.9.nupkg.sha512",
     "/Users/imac/.nuget/packages/hangfire.sqlserver/1.8.9/hangfire.sqlserver.1.8.9.nupkg.sha512",
     "/Users/imac/.nuget/packages/humanizer.core/2.8.26/humanizer.core.2.8.26.nupkg.sha512",
+    "/Users/imac/.nuget/packages/json.net/1.0.33/json.net.1.0.33.nupkg.sha512",
     "/Users/imac/.nuget/packages/mailkit/3.2.0/mailkit.3.2.0.nupkg.sha512",
     "/Users/imac/.nuget/packages/microsoft.aspnetcore.authentication/2.2.0/microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "/Users/imac/.nuget/packages/microsoft.aspnetcore.authentication.abstractions/2.2.0/microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

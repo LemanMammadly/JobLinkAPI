@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using JobLink.Business.Dtos.AdvertisementDtos;
+using JobLink.Business.Dtos.JobDescriptionDtos;
 using JobLink.Business.Services.Interfaces;
 using JobLink.Core.Enums;
 using Microsoft.AspNetCore.Mvc;
@@ -57,6 +58,49 @@ namespace JobLink.API.Controllers
         public async Task<IActionResult> Update(int id, [FromForm]UpdateAdvertisementDto dto)
         {
             await _service.UpdateAsync(id, dto);
+            return NoContent();
+        }
+
+
+        [HttpPut("[action]/{id}")]
+        public async Task<IActionResult> PutText(int id,[FromForm]List<int> ids, [FromForm]List<string> descs)
+        {
+            await _service.UpdateJobDescription(id,ids,descs);
+            return NoContent();
+        }
+
+        [HttpPut("[action]/{id}")]
+        public async Task<IActionResult> PutReqruiment(int id, [FromForm] List<int> ids, [FromForm] List<string> descs)
+        {
+            await _service.UpdateReqruiment(id, ids, descs);
+            return NoContent();
+        }
+
+        [HttpPost("[action]/{id}")]
+        public async Task<IActionResult> CreateText(int id, [FromForm]List<string> descs)
+        {
+            await _service.UpdateAddJobDescription(id, descs);
+            return NoContent();
+        }
+
+        [HttpPost("[action]/{id}")]
+        public async Task<IActionResult> CreateReqruiment(int id, [FromForm] List<string> descs)
+        {
+            await _service.UpdateAddReqruiment(id, descs);
+            return NoContent();
+        }
+
+        [HttpDelete("[action]/{id}")]
+        public async Task<IActionResult> DeleteText(int id, [FromForm] List<int> ids)
+        {
+            await _service.UpdateDeleteJobDescription(id, ids);
+            return NoContent();
+        }
+
+        [HttpDelete("[action]/{id}")]
+        public async Task<IActionResult> DeleteReqruiment(int id, [FromForm] List<int> ids)
+        {
+            await _service.UpdateDeleteReqruiments(id, ids);
             return NoContent();
         }
 

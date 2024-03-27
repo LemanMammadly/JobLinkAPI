@@ -216,6 +216,15 @@
           }
         }
       },
+      "Json.Net/1.0.33": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Json.Net.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Json.Net.dll": {}
+        }
+      },
       "MailKit/3.2.0": {
         "type": "package",
         "dependencies": {
@@ -1757,10 +1766,12 @@
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.1",
           "FluentValidation": "11.9.0",
           "JobLink.DAL": "1.0.0",
+          "Json.Net": "1.0.33",
           "Microsoft.AspNetCore.Http": "2.2.2",
           "Microsoft.AspNetCore.Identity": "2.2.0",
           "Microsoft.Extensions.Hosting.Abstractions": "8.0.0",
-          "NETCore.MailKit": "2.1.0"
+          "NETCore.MailKit": "2.1.0",
+          "Newtonsoft.Json": "6.0.8"
         },
         "compile": {
           "bin/placeholder/JobLink.Business.dll": {}
@@ -2077,6 +2088,18 @@
         "lib/netstandard2.0/Humanizer.dll",
         "lib/netstandard2.0/Humanizer.xml",
         "logo.png"
+      ]
+    },
+    "Json.Net/1.0.33": {
+      "sha512": "5tE+db6BqhRAvITIVBeRsQorLGshPExfm4FmMRvWWAfs4RxeTbFFj2PIEybwmMW0qR30HKkXDYhq0YkDK2Jtxw==",
+      "type": "package",
+      "path": "json.net/1.0.33",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "json.net.1.0.33.nupkg.sha512",
+        "json.net.nuspec",
+        "lib/netstandard2.0/Json.Net.dll"
       ]
     },
     "MailKit/3.2.0": {

@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "TUKLfrmMQLUgQrsbasLPhLbMeR5IDJEAGnoWj0a/vB0dWLVwwgqIhhf3LwjmNHPy/7GJw7XLwuHQNZxYy/QjrA==",
+  "dgSpecHash": "J0BrSnjIkyZEv6TUe0Fv3d/+zwToJLXcThMAylOtrMBlLLgbzvnaZoEzuCcR9cbBChMjcNNY+2ktl2rTuXCO0A==",
   "success": true,
   "projectFilePath": "/Users/imac/Desktop/JobLink/JobLink.Business/JobLink.Business.csproj",
   "expectedPackageFiles": [
     "/Users/imac/.nuget/packages/automapper/12.0.1/automapper.12.0.1.nupkg.sha512",
     "/Users/imac/.nuget/packages/automapper.extensions.microsoft.dependencyinjection/12.0.1/automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "/Users/imac/.nuget/packages/fluentvalidation/11.9.0/fluentvalidation.11.9.0.nupkg.sha512",
+    "/Users/imac/.nuget/packages/json.net/1.0.33/json.net.1.0.33.nupkg.sha512",
     "/Users/imac/.nuget/packages/mailkit/3.2.0/mailkit.3.2.0.nupkg.sha512",
     "/Users/imac/.nuget/packages/microsoft.aspnetcore.authentication/2.2.0/microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "/Users/imac/.nuget/packages/microsoft.aspnetcore.authentication.abstractions/2.2.0/microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
@@ -61,6 +62,7 @@
     "/Users/imac/.nuget/packages/microsoft.win32.systemevents/4.7.0/microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "/Users/imac/.nuget/packages/mimekit/3.2.0/mimekit.3.2.0.nupkg.sha512",
     "/Users/imac/.nuget/packages/netcore.mailkit/2.1.0/netcore.mailkit.2.1.0.nupkg.sha512",
+    "/Users/imac/.nuget/packages/newtonsoft.json/6.0.8/newtonsoft.json.6.0.8.nupkg.sha512",
     "/Users/imac/.nuget/packages/portable.bouncycastle/1.9.0/portable.bouncycastle.1.9.0.nupkg.sha512",
     "/Users/imac/.nuget/packages/system.buffers/4.5.0/system.buffers.4.5.0.nupkg.sha512",
     "/Users/imac/.nuget/packages/system.collections.immutable/6.0.0/system.collections.immutable.6.0.0.nupkg.sha512",
@@ -82,5 +84,16 @@
     "/Users/imac/.nuget/packages/system.text.encodings.web/4.5.0/system.text.encodings.web.4.5.0.nupkg.sha512",
     "/Users/imac/.nuget/packages/system.windows.extensions/4.7.0/system.windows.extensions.4.7.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Newtonsoft.Json 6.0.8' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8' instead of the project target framework 'net6.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Newtonsoft.Json",
+      "targetGraphs": [
+        "net6.0"
+      ]
+    }
+  ]
 }

@@ -10,7 +10,7 @@ public record UpdateAdvertisementDto
     public string City { get; set; }
     public decimal? Salary { get; set; }
     public string WorkGraphic { get; set; }
-    public List<UpdateJobDescriptionDto> JobDescriptions { get; set; }
+    //public List<UpdateJobDescriptionDto> JobDescriptions { get; set; }
     public string Reqruiment { get; set; }
     public string? Experience { get; set; }
     public Education? Education { get; set; }

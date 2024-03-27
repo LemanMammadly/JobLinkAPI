@@ -77,10 +77,6 @@ namespace JobLink.DAL.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Reqruiment")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<decimal?>("Salary")
                         .HasColumnType("decimal(18,2)");
 
@@ -406,6 +402,31 @@ namespace JobLink.DAL.Migrations
                     b.ToTable("jobDescriptions");
                 });
 
+            modelBuilder.Entity("JobLink.Core.Entities.Reqruiment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("AdvertisementId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdvertisementId");
+
+                    b.ToTable("Reqruiments");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -629,6 +650,17 @@ namespace JobLink.DAL.Migrations
                     b.Navigation("Advertisement");
                 });
 
+            modelBuilder.Entity("JobLink.Core.Entities.Reqruiment", b =>
+                {
+                    b.HasOne("JobLink.Core.Entities.Advertisement", "Advertisement")
+                        .WithMany("Reqruiments")
+                        .HasForeignKey("AdvertisementId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Advertisement");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -690,6 +722,8 @@ namespace JobLink.DAL.Migrations
                     b.Navigation("AdvertisementAbilities");
 
                     b.Navigation("JobDescriptions");
+
+                    b.Navigation("Reqruiments");
                 });
 
             modelBuilder.Entity("JobLink.Core.Entities.AppUser", b =>

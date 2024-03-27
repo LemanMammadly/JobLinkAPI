@@ -1,43 +1,34 @@
 ﻿<Properties StartupConfiguration="{2B17C4CB-5290-471D-A402-C8627FD2E3A0}|Default">
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.ItemProperties.JobLink.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="JobLink.API/Controllers/JobDescriptionController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="JobLink.Business/Services/Implements/AdvertisementService.cs">
     <Files>
-      <File FileName="JobLink.Business/Dtos/AdvertisementDtos/CreateAdvertisementDto.cs" Line="1" Column="1" />
-      <File FileName="JobLink.Business/Services/Implements/AdvertisementService.cs" Line="116" Column="6" />
-      <File FileName="JobLink.Business/Services/Implements/JobDescriptionService.cs" Line="30" Column="26" />
-      <File FileName="JobLink.Business/Dtos/JobDescriptionDtos/CreateJobDescriptionDto.cs" Line="1" Column="1" />
-      <File FileName="JobLink.Business/Services/Interfaces/IAdvertisementService.cs" Line="1" Column="1" />
-      <File FileName="JobLink.Business/Services/Interfaces/IJobDescriptionService.cs" Line="3" Column="48" />
-      <File FileName="JobLink.API/Controllers/JobDescriptionController.cs" Line="25" Column="43" />
+      <File FileName="JobLink.Business/Services/Implements/AdvertisementService.cs" Line="27" Column="48" />
+      <File FileName="JobLink.Business/Services/Interfaces/IAdvertisementService.cs" Line="14" Column="72" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="JobLink" expanded="True">
-            <Node name="JobLink.API">
-              <Node name="Controllers" expanded="True">
-                <Node name="JobDescriptionController.cs" selected="True" />
-              </Node>
-            </Node>
-            <Node name="JobLink.Business">
-              <Node name="Dtos" expanded="True">
-                <Node name="AdvertisementDtos" expanded="True" />
-                <Node name="JobDescriptionDtos" expanded="True" />
-              </Node>
+            <Node name="JobLink.Business" expanded="True">
               <Node name="Services" expanded="True">
-                <Node name="Implements" expanded="True" />
+                <Node name="Implements" expanded="True">
+                  <Node name="AdvertisementService.cs" selected="True" />
+                </Node>
                 <Node name="Interfaces" expanded="True" />
               </Node>
+            </Node>
+            <Node name="JobLink.Core" expanded="True">
+              <Node name="Entities" expanded="True" />
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>

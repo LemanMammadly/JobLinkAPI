@@ -13,7 +13,7 @@ public record CreateAdvertisementDto
     public string WorkGraphic { get; set; }
     public List<int>? AbilityIds { get; set; }
     public List<string> Desc { get; set; }
-    public string Reqruiment { get; set; }
+    public List<string> Reqruiment { get; set; }
     public string? Experience { get; set; }
     public Education? Education { get; set; }
     public int CategoryId { get; set; }
@@ -40,10 +40,6 @@ public class CreateAdvertisementDtoValidator:AbstractValidator<CreateAdvertiseme
         RuleFor(a => a.AbilityIds)
             .Must(a => CheckSameId(a)).WithMessage("You cannot add same ability id")
             .When(a => a.AbilityIds != null);
-        RuleFor(a => a.Reqruiment)
-            .MinimumLength(20).WithMessage("Advertisement reqruiment minimum length 20")
-            .NotEmpty().WithMessage("Advertisement reqruiment not empty")
-            .NotNull().WithMessage("Advertisement reqruiment not null");
         RuleFor(a => a.Experience)
             .MinimumLength(20).WithMessage("Advertisement expreience minimum length 20")
             .When(a => a.Experience != null);

@@ -56,12 +56,12 @@ public class JobDescriptionService : IJobDescriptionService
         return _mapper.Map<JobDescriptionDetailDto>(entity);
     }
 
-    public async Task UpdateAsync(UpdateJobDescriptionDto dto)
+    public async Task UpdateAsync(int id,string desc)
     {
-        if (dto.Id < 0) throw new NegativeIdException<Advertisement>();
-        var desc = await _repo.GetByIdAsync(dto.Id);
-        if (desc is null || desc.IsDeleted == true) throw new NotFoundException<JobDescription>();
-        _mapper.Map(dto, desc);
+        if (id < 0) throw new NegativeIdException<Advertisement>();
+        var descs = await _repo.GetByIdAsync(id);
+        if (descs is null || descs.IsDeleted == true) throw new NotFoundException<JobDescription>();
+        descs.Description = desc;
         await _repo.SaveAsync();
     }
 }

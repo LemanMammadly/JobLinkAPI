@@ -7,7 +7,7 @@ public interface IJobDescriptionService
     Task CreateAsync(CreateJobDescriptionDto dto, int adverId);
     Task<IEnumerable<JobDescriptionListItemDto>> GetAllAsync();
     Task<JobDescriptionDetailDto> GetByIdAsync(int id);
-    Task UpdateAsync(UpdateJobDescriptionDto dto);
+    Task UpdateAsync(int id,string desc);
     Task DeleteAsync(int id);
 }
 

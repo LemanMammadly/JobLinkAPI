@@ -1,4 +1,5 @@
 ﻿using JobLink.Business.Dtos.JobDescriptionDtos;
+using JobLink.Business.Dtos.ReqruimentDtos;
 using JobLink.Core.Enums;
 
 namespace JobLink.Business.Dtos.AdvertisementDtos;
@@ -23,5 +24,6 @@ public record AdvertisementDetailItemDto
     public bool IsDeleted { get; set; }
     public IEnumerable<AdvertisementAbilityDto> AdvertisementAbilities { get; set; }
     public IEnumerable<JobDescriptionListItemDto> JobDescriptions { get; set; }
+    public IEnumerable<ReqruimentListItemDto> Reqruiments { get; set; }
 }
 
