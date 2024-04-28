@@ -13,6 +13,7 @@ using JobLink.DAL.Repositories.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
 namespace JobLink.Business.Services.Implements;
@@ -30,8 +31,9 @@ public class AdvertisementService : IAdvertisementService
     readonly IJobDescriptionRepository _jobRepo;
     readonly IReqruimentService _reqruimentService;
     readonly IReqruimentRepository _reqruimentRepository;
+    readonly IConfiguration _config;
 
-    public AdvertisementService(IAdvertisementRepository repo, IMapper mapper, ICategoryRepository catrepo, IHttpContextAccessor httpContextAccessor, UserManager<AppUser> userManager, IAbilityRepository abilityRepository, IJobDescriptionService jobDescriptionService, IJobDescriptionRepository jobRepo, IReqruimentService reqruimentService, IReqruimentRepository reqruimentRepository)
+    public AdvertisementService(IAdvertisementRepository repo, IMapper mapper, ICategoryRepository catrepo, IHttpContextAccessor httpContextAccessor, UserManager<AppUser> userManager, IAbilityRepository abilityRepository, IJobDescriptionService jobDescriptionService, IJobDescriptionRepository jobRepo, IReqruimentService reqruimentService, IReqruimentRepository reqruimentRepository, IConfiguration config)
     {
         _repo = repo;
         _mapper = mapper;
@@ -44,6 +46,7 @@ public class AdvertisementService : IAdvertisementService
         _jobRepo = jobRepo;
         _reqruimentService = reqruimentService;
         _reqruimentRepository = reqruimentRepository;
+        _config = config;
     }
 
     public async Task AcceptAdvertisement(int id)
@@ -156,21 +159,38 @@ public class AdvertisementService : IAdvertisementService
 
     public async Task<IEnumerable<AdvertisementListItemDto>> GetAllAcceptAsync()
     {
-        var advertisements = _repo.FindAll(a => a.IsDeleted == false && a.State == State.Accept, "AdvertisementAbilities", "AdvertisementAbilities.Ability", "JobDescriptions", "Reqruiments");
-        return _mapper.Map<IEnumerable<AdvertisementListItemDto>>(advertisements);
+        var advertisements = _repo.FindAll(a => a.IsDeleted == false && a.State == State.Accept, "AdvertisementAbilities", "AdvertisementAbilities.Ability", "JobDescriptions", "Reqruiments", "Company");
+        var map = _mapper.Map<IEnumerable<AdvertisementListItemDto>>(advertisements);
+
+        foreach (var adver in map)
+        {
+            adver.Company.Logo = _config["Jwt:Issuer"] + "wwwroot/" + adver.Company.Logo;
+        }
+        return map;
     }
 
     public async Task<IEnumerable<AdvertisementListItemDto>> GetAllAsync(bool takeAl)
     {
         if(takeAl)
         {
-            var advertisements = _repo.GetAll("AdvertisementAbilities", "AdvertisementAbilities.Ability", "JobDescriptions", "Reqruiments");
-            return _mapper.Map<IEnumerable<AdvertisementListItemDto>>(advertisements);
+            var advertisements = _repo.GetAll("AdvertisementAbilities", "AdvertisementAbilities.Ability", "JobDescriptions", "Reqruiments", "Company");
+            var map = _mapper.Map<IEnumerable<AdvertisementListItemDto>>(advertisements);
+            foreach (var adver in map)
+            {
+                adver.Company.Logo = _config["Jwt:Issuer"] + "wwwroot/" + adver.Company.Logo;
+            }
+            return map;
         }
         else
         {
-            var advertisements = _repo.FindAll(a => a.IsDeleted == false, "AdvertisementAbilities", "AdvertisementAbilities.Ability", "JobDescriptions", "Reqruiments");
-            return _mapper.Map<IEnumerable<AdvertisementListItemDto>>(advertisements);
+            var advertisements = _repo.FindAll(a => a.IsDeleted == false, "AdvertisementAbilities", "AdvertisementAbilities.Ability", "JobDescriptions", "Reqruiments", "Company");
+            var map = _mapper.Map<IEnumerable<AdvertisementListItemDto>>(advertisements);
+
+            foreach (var adver in map)
+            {
+                adver.Company.Logo = _config["Jwt:Issuer"] + "wwwroot/" + adver.Company.Logo;
+            }
+            return map;
         }
     }
 
@@ -181,12 +201,12 @@ public class AdvertisementService : IAdvertisementService
 
         if(takeAll)
         {
-            advertisement = await _repo.GetByIdAsync(id,"AdvertisementAbilities", "AdvertisementAbilities.Ability", "JobDescriptions", "Reqruiments");
+            advertisement = await _repo.GetByIdAsync(id,"AdvertisementAbilities", "AdvertisementAbilities.Ability", "JobDescriptions", "Reqruiments", "Company");
             if (advertisement is null) throw new NotFoundException<Advertisement>();
         }
         else
         {
-            advertisement = await _repo.GetSingleAsync(a => a.IsDeleted == false && a.Id == id, "AdvertisementAbilities", "AdvertisementAbilities.Ability", "JobDescriptions", "Reqruiments");
+            advertisement = await _repo.GetSingleAsync(a => a.IsDeleted == false && a.Id == id, "AdvertisementAbilities", "AdvertisementAbilities.Ability", "JobDescriptions", "Reqruiments", "Company");
             if (advertisement is null) throw new NotFoundException<Advertisement>();
             advertisement.ViewCount++;
         }

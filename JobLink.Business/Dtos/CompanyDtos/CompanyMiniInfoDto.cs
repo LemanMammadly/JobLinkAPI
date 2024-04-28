@@ -1,0 +1,9 @@
+﻿namespace JobLink.Business.Dtos.CompanyDtos;
+
+public record CompanyMiniInfoDto
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string? Logo { get; set; }
+}
+

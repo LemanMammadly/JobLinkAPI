@@ -1,4 +1,5 @@
-﻿using JobLink.Business.Dtos.JobDescriptionDtos;
+﻿using JobLink.Business.Dtos.CompanyDtos;
+using JobLink.Business.Dtos.JobDescriptionDtos;
 using JobLink.Business.Dtos.ReqruimentDtos;
 using JobLink.Core.Enums;
 
@@ -22,6 +23,7 @@ public record AdvertisementDetailItemDto
     public string State { get; set; }
     public int CategoryId { get; set; }
     public bool IsDeleted { get; set; }
+    public CompanyMiniInfoDto Company { get; set; }
     public IEnumerable<AdvertisementAbilityDto> AdvertisementAbilities { get; set; }
     public IEnumerable<JobDescriptionListItemDto> JobDescriptions { get; set; }
     public IEnumerable<ReqruimentListItemDto> Reqruiments { get; set; }

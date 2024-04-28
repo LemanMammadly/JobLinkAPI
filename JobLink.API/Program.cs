@@ -17,6 +17,7 @@ using Microsoft.OpenApi.Models;
 using JobLink.Business.Constants;
 using JobLink.DAL;
 using Hangfire;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -27,6 +28,9 @@ var configuration = builder.Configuration;
 builder.Services.AddControllers().AddNewtonsoftJson(opt =>
     opt.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
+
+//Hangfire
+
 var hangfireConnectionString = builder.Configuration["ConnectionStrings:Hangfire"];
 builder.Services.AddHangfire(x =>
 {
@@ -36,6 +40,22 @@ builder.Services.AddHangfire(x =>
 });
 
 builder.Services.AddHangfireServer();
+
+
+//Cors
+
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy("AllowAll",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+
+        });
+});
+
 
 
 builder.Services.AddControllers();
@@ -124,6 +144,8 @@ builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
+app.UseCors("AllowAll");
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -134,7 +156,14 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+
+
 app.UseHttpsRedirection();
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(builder.Environment.ContentRootPath, "wwwroot/imgs")),
+    RequestPath = "/wwwroot/imgs"
+});
 
 app.UseAuthentication();
 

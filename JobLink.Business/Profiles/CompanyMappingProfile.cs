@@ -16,6 +16,7 @@ public class CompanyMappingProfile:Profile
         CreateMap<Dtos.CompanyDtos.CompanyIndustryDto, CompanyIndustry>().ReverseMap();
         CreateMap<CompanyInfoDto, Company>().ReverseMap();
         CreateMap<IndustryInfoDto, Industry>().ReverseMap();
+        CreateMap<CompanyMiniInfoDto, Company>().ReverseMap();
     }
 }
 
