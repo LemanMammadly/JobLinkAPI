@@ -1,4 +1,6 @@
-﻿namespace JobLink.Business.Dtos.CompanyDtos;
+﻿using JobLink.Business.Dtos.AdvertisementDtos;
+
+namespace JobLink.Business.Dtos.CompanyDtos;
 
 public record CompanyInfoDto
 {
@@ -12,5 +14,6 @@ public record CompanyInfoDto
     public string? Website { get; set; }
     public DateTime CreateDate { get; set; }
     public bool IsDeleted { get; set; }
+    public IEnumerable<AdvertisementInfoDto> Advertisements { get; set; }
 }
 

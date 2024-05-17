@@ -15,6 +15,7 @@ using JobLink.DAL.Repositories.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace JobLink.Business.Services.Implements;
 
@@ -27,8 +28,9 @@ public class CompanyService : ICompanyService
     readonly IHttpContextAccessor _httpContextAccessor;
     readonly string? _userId;
     readonly UserManager<AppUser> _userManager;
+    readonly IConfiguration _config;
 
-    public CompanyService(ICompanyRepository repo, IIndustryRepository industryRepository, IMapper mapper, IFileService fileService, IHttpContextAccessor httpContextAccessor, UserManager<AppUser> userManager)
+    public CompanyService(ICompanyRepository repo, IIndustryRepository industryRepository, IMapper mapper, IFileService fileService, IHttpContextAccessor httpContextAccessor, UserManager<AppUser> userManager, IConfiguration config)
     {
         _repo = repo;
         _industryRepository = industryRepository;
@@ -37,6 +39,7 @@ public class CompanyService : ICompanyService
         _httpContextAccessor = httpContextAccessor;
         _userId = _httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         _userManager = userManager;
+        _config = config;
     }
 
     public async Task CreateAsync(CreateCompanyDto dto)
@@ -101,12 +104,22 @@ public class CompanyService : ICompanyService
         if(takeAll)
         {
             var entities = await _repo.GetAll("CompanyIndustries", "CompanyIndustries.Industry", "AppUser", "Advertisements").ToListAsync();
-            return _mapper.Map<IEnumerable<CompanyListItemDto>>(entities);
+            var map = _mapper.Map<IEnumerable<CompanyListItemDto>>(entities);
+            foreach (var item in map)
+            {
+                item.Logo = _config["Jwt:Issuer"] + "wwwroot/" + item.Logo;
+            }
+            return map;
         }
         else
         {
             var entities =await _repo.FindAll(c=>c.IsDeleted==false,"CompanyIndustries", "CompanyIndustries.Industry", "AppUser", "Advertisements").ToListAsync();
-            return _mapper.Map<IEnumerable<CompanyListItemDto>>(entities);
+            var map = _mapper.Map<IEnumerable<CompanyListItemDto>>(entities);
+            foreach (var item in map)
+            {
+                item.Logo = _config["Jwt:Issuer"] + "wwwroot/" + item.Logo;
+            }
+            return map;
         }
     }
 

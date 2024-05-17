@@ -8,6 +8,7 @@ using JobLink.Business.ExternalServices.Interfaces;
 using JobLink.Business.Services.Interfaces;
 using JobLink.Core.Entities;
 using JobLink.DAL.Repositories.Interfaces;
+using Microsoft.Extensions.Configuration;
 
 namespace JobLink.Business.Services.Implements;
 
@@ -16,12 +17,14 @@ public class CategoryService : ICategoryService
     readonly ICategoryRepository _repo;
     readonly IMapper _mapper;
     readonly IFileService _fileService;
+    readonly IConfiguration _config;
 
-    public CategoryService(ICategoryRepository repo, IMapper mapper, IFileService fileService)
+    public CategoryService(ICategoryRepository repo, IMapper mapper, IFileService fileService, IConfiguration config)
     {
         _repo = repo;
         _mapper = mapper;
         _fileService = fileService;
+        _config = config;
     }
 
     public async Task CreateAsync(CreateCategoryDto dto)
@@ -54,12 +57,22 @@ public class CategoryService : ICategoryService
         if(takeAll)
         {
             var entities = _repo.GetAll("Advertisements");
-            return _mapper.Map<IEnumerable<CategoryListItemDto>>(entities);
+            var map = _mapper.Map<IEnumerable<CategoryListItemDto>>(entities);
+            foreach (var item in map)
+            {
+                item.Logo = _config["Jwt:Issuer"] + "wwwroot/" + item.Logo;
+            }
+            return map;
         }
         else
         {
             var entites = _repo.FindAll(c => c.IsDeleted == false, "Advertisements");
-            return _mapper.Map<IEnumerable<CategoryListItemDto>>(entites);
+            var map = _mapper.Map<IEnumerable<CategoryListItemDto>>(entites);
+            foreach (var item in map)
+            {
+                item.Logo = _config["Jwt:Issuer"] + "wwwroot/" + item.Logo;
+            }
+            return map;
         }
     }
 
@@ -79,7 +92,10 @@ public class CategoryService : ICategoryService
             if (category is null) throw new NotFoundException<Category>();
         }
 
-        return _mapper.Map<CategoryDetailItemDto>(category);
+        var map = _mapper.Map<CategoryDetailItemDto>(category);
+        map.Logo = _config["Jwt:Issuer"] + "wwwroot/" + map.Logo;
+
+        return map;
     }
 
     public async Task ReverteSoftDeleteAsync(int id)

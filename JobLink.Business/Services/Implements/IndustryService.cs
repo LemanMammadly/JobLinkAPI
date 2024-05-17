@@ -10,6 +10,7 @@ using JobLink.Business.Services.Interfaces;
 using JobLink.Core.Entities;
 using JobLink.DAL.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace JobLink.Business.Services.Implements;
 
@@ -18,12 +19,16 @@ public class IndustryService : IIndustryService
     readonly IIndustryRepository _repo;
     readonly IMapper _mapper;
     readonly IFileService _fileService;
+    readonly IAdvertisementService advertisementService;
+    readonly IConfiguration _config;
 
-    public IndustryService(IIndustryRepository repo, IMapper mapper, IFileService fileService)
+    public IndustryService(IIndustryRepository repo, IMapper mapper, IFileService fileService, IAdvertisementService advertisementService, IConfiguration config)
     {
         _repo = repo;
         _mapper = mapper;
         _fileService = fileService;
+        this.advertisementService = advertisementService;
+        _config = config;
     }
 
     public async Task CreateAsync(CreateIndustryDto dto)
@@ -64,13 +69,23 @@ public class IndustryService : IIndustryService
     {
         if (takeAll)
         {
-            var entities = _repo.GetAll("CompanyIndustries", "CompanyIndustries.Company");
-            return _mapper.Map<IEnumerable<IndustryListItemDto>>(entities);
+            var entities = _repo.GetAll("CompanyIndustries", "CompanyIndustries.Company", "CompanyIndustries.Company.Advertisements");
+            var map = _mapper.Map<IEnumerable<IndustryListItemDto>>(entities);
+            foreach (var item in map)
+            {
+                item.Logo = _config["Jwt:Issuer"] + "wwwroot/" + item.Logo;
+            }
+            return map;
         }
         else
         {
-            var entities = _repo.FindAll(i => i.IsDeleted == false, "CompanyIndustries", "CompanyIndustries.Company");
-            return _mapper.Map<IEnumerable<IndustryListItemDto>>(entities);
+            var entities = _repo.FindAll(i => i.IsDeleted == false, "CompanyIndustries", "CompanyIndustries.Company" , "CompanyIndustries.Company.Advertisements");
+            var map = _mapper.Map<IEnumerable<IndustryListItemDto>>(entities);
+            foreach (var item in map)
+            {
+                item.Logo = _config["Jwt:Issuer"] + "wwwroot/" + item.Logo;
+            }
+            return map;
         }
     }
 
