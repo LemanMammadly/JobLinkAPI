@@ -194,6 +194,25 @@ public class AdvertisementService : IAdvertisementService
         }
     }
 
+    public async Task<IEnumerable<AdvertisementListItemDto>> GetAllFilter(AdvertisementFilterDto filter)
+    {
+        var NowDate = DateTime.Now;
+        DateTime? filterDate=null;
+
+        if(filter.Date != null)
+        {
+            filterDate = NowDate.AddDays(-(int)filter.Date);
+        }
+
+        var advertisements = _repo.FindAll(a => a.CreateDate >= filterDate && a.State == State.Accept, "AdvertisementAbilities", "AdvertisementAbilities.Ability", "JobDescriptions", "Reqruiments", "Company");
+        var map = _mapper.Map<IEnumerable<AdvertisementListItemDto>>(advertisements);
+        foreach (var adver in map)
+        {
+            adver.Company.Logo = _config["Jwt:Issuer"] + "wwwroot/" + adver.Company.Logo;
+        }
+        return map;
+    }
+
     public async Task<AdvertisementDetailItemDto> GetByIdAsync(int id, bool takeAll)
     {
         if (id <= 0) throw new NegativeIdException<Advertisement>();

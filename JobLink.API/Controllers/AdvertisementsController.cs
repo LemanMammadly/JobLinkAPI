@@ -35,6 +35,13 @@ namespace JobLink.API.Controllers
             return Ok(await _service.GetAllAcceptAsync());
         }
 
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> GetFilter([FromQuery] AdvertisementFilterDto dto)
+        {
+            return Ok(await _service.GetAllFilter(dto));
+        }
+
         [HttpGet("[action]/{id}")]
         public async Task<IActionResult> GetTrue(int id)
         {

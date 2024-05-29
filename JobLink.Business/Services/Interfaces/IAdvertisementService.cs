@@ -25,6 +25,7 @@ public interface IAdvertisementService
     Task SoftDeleteAsync(int id);
     Task ReverteSoftDeleteAsync(int id);
     Task DeleteAsync(int id);
+    Task<IEnumerable<AdvertisementListItemDto>> GetAllFilter(AdvertisementFilterDto filter);
 }
 
 
