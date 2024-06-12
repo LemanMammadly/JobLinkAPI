@@ -194,7 +194,7 @@ public class AdvertisementService : IAdvertisementService
         }
     }
 
-    public async Task<IEnumerable<AdvertisementListItemDto>> GetAllFilter(AdvertisementFilterDto filter)
+    public async Task<IEnumerable<AdvertisementListItemDto>> SortByDate(AdvertisementFilterDto filter)
     {
         var NowDate = DateTime.Now;
         DateTime? filterDate=null;
@@ -266,6 +266,67 @@ public class AdvertisementService : IAdvertisementService
 
         _repo.SoftDelete(entity);
         await _repo.SaveAsync();
+    }
+
+    public async Task<IEnumerable<AdvertisementListItemDto>> SortBy(Sort sort)
+    {
+        var advertisements = _repo.FindAll(a => a.IsDeleted == false && a.State == State.Accept, "AdvertisementAbilities", "AdvertisementAbilities.Ability", "JobDescriptions", "Reqruiments", "Company");
+        if(sort==Sort.Salary)
+        {
+            advertisements = advertisements.OrderByDescending(a => a.Salary);
+        }
+        if (sort == Sort.Company)
+        {
+            advertisements = advertisements.OrderBy(a => a.Company.Name);
+        }
+        if (sort == Sort.ViewCount)
+        {
+            advertisements = advertisements.OrderByDescending(a => a.ViewCount);
+        }
+        if (sort == Sort.Position)
+        {
+            advertisements = advertisements.OrderByDescending(a => a.Title);
+        }
+
+        var map = _mapper.Map<IEnumerable<AdvertisementListItemDto>>(advertisements);
+        return map;
+    }
+
+    public async Task<IEnumerable<AdvertisementListItemDto>> SortByArea(string area)
+    {
+        var advertisements = _repo.FindAll(a => a.IsDeleted == false && a.State == State.Accept, "AdvertisementAbilities", "AdvertisementAbilities.Ability", "JobDescriptions", "Reqruiments", "Company");
+        advertisements = advertisements.Where(a => a.City == area);
+        var map = _mapper.Map<IEnumerable<AdvertisementListItemDto>>(advertisements);
+        return map;
+    }
+
+    public async Task<IEnumerable<AdvertisementListItemDto>> SortBySalary(Salary salary)
+    {
+        var advertisements = _repo.FindAll(a => a.IsDeleted == false && a.State == State.Accept, "AdvertisementAbilities", "AdvertisementAbilities.Ability", "JobDescriptions", "Reqruiments", "Company");
+
+        if(salary == Salary.ZeroFiveHundred)
+        {
+            advertisements = advertisements.Where(a => a.Salary > 0 && a.Salary <= 500);
+        }
+        if (salary == Salary.FiveHundredOneThousand)
+        {
+            advertisements = advertisements.Where(a => a.Salary > 500 && a.Salary <= 1000);
+        }
+        if (salary == Salary.OneThousandTwoThousand)
+        {
+            advertisements = advertisements.Where(a => a.Salary > 1000 && a.Salary <= 2000);
+        }
+        if (salary == Salary.TwoThousandFiveThousand)
+        {
+            advertisements = advertisements.Where(a => a.Salary > 2000 && a.Salary <= 5000);
+        }
+        if (salary == Salary.FiveThousandUpper)
+        {
+            advertisements = advertisements.Where(a => a.Salary > 5000);
+        }
+
+        var map = _mapper.Map<IEnumerable<AdvertisementListItemDto>>(advertisements);
+        return map;
     }
 
     public async Task UpdateAddJobDescription(int id,List<string> descs)

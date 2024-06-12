@@ -35,13 +35,6 @@ namespace JobLink.API.Controllers
             return Ok(await _service.GetAllAcceptAsync());
         }
 
-
-        [HttpGet("[action]")]
-        public async Task<IActionResult> GetFilter([FromQuery] AdvertisementFilterDto dto)
-        {
-            return Ok(await _service.GetAllFilter(dto));
-        }
-
         [HttpGet("[action]/{id}")]
         public async Task<IActionResult> GetTrue(int id)
         {
@@ -151,6 +144,30 @@ namespace JobLink.API.Controllers
         {
             await _service.UpdateStateAsync(id,state);
             return NoContent();
+        }
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> SortByDate([FromQuery] AdvertisementFilterDto dto)
+        {
+            return Ok(await _service.SortByDate(dto));
+        }
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> SortBy(Sort sort)
+        {
+            return Ok(await _service.SortBy(sort));
+        }
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> SortBySalary(Salary salary)
+        {
+            return Ok(await _service.SortBySalary(salary));
+        }
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> SortByArea(string area)
+        {
+            return Ok(await _service.SortByArea(area));
         }
     }
 }
