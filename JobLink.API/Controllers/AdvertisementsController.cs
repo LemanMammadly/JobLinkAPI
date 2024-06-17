@@ -146,28 +146,34 @@ namespace JobLink.API.Controllers
             return NoContent();
         }
 
-        [HttpGet("[action]")]
-        public async Task<IActionResult> SortByDate([FromQuery] AdvertisementFilterDto dto)
-        {
-            return Ok(await _service.SortByDate(dto));
-        }
+        //[HttpGet("[action]")]
+        //public async Task<IActionResult> SortByDate(IEnumerable<AdvertisementListItemDto> advertisements,[FromQuery] DateFilter date)
+        //{
+        //    return Ok(await _service.SortByDate(advertisements,date));
+        //}
+
+        //[HttpGet("[action]")]
+        //public async Task<IActionResult> SortBy(IEnumerable<AdvertisementListItemDto> advertisements, Sort sort)
+        //{
+        //    return Ok(await _service.SortBy(advertisements,sort));
+        //}
+
+        //[HttpGet("[action]")]
+        //public async Task<IActionResult> SortBySalary(IEnumerable<AdvertisementListItemDto> advertisements, Salary salary)
+        //{
+        //    return Ok(await _service.SortBySalary(advertisements,salary));
+        //}
+
+        //[HttpGet("[action]")]
+        //public async Task<IActionResult> SortByArea(IEnumerable<AdvertisementListItemDto> advertisements, string area)
+        //{
+        //    return Ok(await _service.SortByArea(advertisements,area));
+        //}
 
         [HttpGet("[action]")]
-        public async Task<IActionResult> SortBy(Sort sort)
+        public async Task<IActionResult> FilterAll([FromQuery]AdvertisementFilterDto filter)
         {
-            return Ok(await _service.SortBy(sort));
-        }
-
-        [HttpGet("[action]")]
-        public async Task<IActionResult> SortBySalary(Salary salary)
-        {
-            return Ok(await _service.SortBySalary(salary));
-        }
-
-        [HttpGet("[action]")]
-        public async Task<IActionResult> SortByArea(string area)
-        {
-            return Ok(await _service.SortByArea(area));
+            return Ok(await _service.GetAllFilter(filter));
         }
     }
 }

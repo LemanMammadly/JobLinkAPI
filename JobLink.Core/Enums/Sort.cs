@@ -6,7 +6,6 @@ public enum Sort
     Salary=1,
     Position,
     Company,
-    ViewCount,
-    Popularity
+    ViewCount
 }
 

@@ -1,5 +1,6 @@
 ﻿using JobLink.Business.Dtos.AdvertisementDtos;
 using JobLink.Business.Dtos.JobDescriptionDtos;
+using JobLink.Core.Entities;
 using JobLink.Core.Enums;
 
 namespace JobLink.Business.Services.Interfaces;
@@ -25,11 +26,11 @@ public interface IAdvertisementService
     Task SoftDeleteAsync(int id);
     Task ReverteSoftDeleteAsync(int id);
     Task DeleteAsync(int id);
-    Task<IEnumerable<AdvertisementListItemDto>> SortBy(Sort sort);
-    Task<IEnumerable<AdvertisementListItemDto>> SortBySalary(Salary salary);
-    Task<IEnumerable<AdvertisementListItemDto>> SortByArea(string area);
-    Task<IEnumerable<AdvertisementListItemDto>> SortByDate(AdvertisementFilterDto filter);
-    //Task<IEnumerable<AdvertisementListItemDto>> GetAllFilter(AdvertisementFilterDto filter);
+    Task<IEnumerable<AdvertisementListItemDto>> SortBy(IEnumerable<AdvertisementListItemDto> advertisements,Sort? sort);
+    Task<IEnumerable<AdvertisementListItemDto>> SortBySalary(IEnumerable<AdvertisementListItemDto> advertisements,Salary? salary);
+    Task<IEnumerable<AdvertisementListItemDto>> SortByArea(IEnumerable<AdvertisementListItemDto> advertisements, string area);
+    Task<IEnumerable<AdvertisementListItemDto>> SortByDate(IEnumerable<AdvertisementListItemDto> advertisements, DateFilter? filter);
+    Task<IEnumerable<AdvertisementListItemDto>> GetAllFilter(AdvertisementFilterDto filter);
 }
 
 

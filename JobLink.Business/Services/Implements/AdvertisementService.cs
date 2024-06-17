@@ -194,23 +194,18 @@ public class AdvertisementService : IAdvertisementService
         }
     }
 
-    public async Task<IEnumerable<AdvertisementListItemDto>> SortByDate(AdvertisementFilterDto filter)
+    public async Task<IEnumerable<AdvertisementListItemDto>> SortByDate(IEnumerable<AdvertisementListItemDto> advertisements, DateFilter? filter)
     {
         var NowDate = DateTime.Now;
         DateTime? filterDate=null;
+        IEnumerable<AdvertisementListItemDto> advertisementsList = new List<AdvertisementListItemDto>();
 
-        if(filter.Date != null)
+        if(filter != null)
         {
-            filterDate = NowDate.AddDays(-(int)filter.Date);
+            filterDate = NowDate.AddDays(-(int)filter);
         }
-
-        var advertisements = _repo.FindAll(a => a.CreateDate >= filterDate && a.State == State.Accept, "AdvertisementAbilities", "AdvertisementAbilities.Ability", "JobDescriptions", "Reqruiments", "Company");
-        var map = _mapper.Map<IEnumerable<AdvertisementListItemDto>>(advertisements);
-        foreach (var adver in map)
-        {
-            adver.Company.Logo = _config["Jwt:Issuer"] + "wwwroot/" + adver.Company.Logo;
-        }
-        return map;
+        advertisementsList = advertisements.Where(a => a.CreateDate >= filterDate);
+        return advertisementsList;
     }
 
     public async Task<AdvertisementDetailItemDto> GetByIdAsync(int id, bool takeAll)
@@ -268,65 +263,62 @@ public class AdvertisementService : IAdvertisementService
         await _repo.SaveAsync();
     }
 
-    public async Task<IEnumerable<AdvertisementListItemDto>> SortBy(Sort sort)
+    public async Task<IEnumerable<AdvertisementListItemDto>> SortBy(IEnumerable<AdvertisementListItemDto> advertisements, Sort? sort)
     {
-        var advertisements = _repo.FindAll(a => a.IsDeleted == false && a.State == State.Accept, "AdvertisementAbilities", "AdvertisementAbilities.Ability", "JobDescriptions", "Reqruiments", "Company");
+        IEnumerable<AdvertisementListItemDto> advertisementsList = new List<AdvertisementListItemDto>();
         if(sort==Sort.Salary)
         {
-            advertisements = advertisements.OrderByDescending(a => a.Salary);
+            advertisementsList = advertisements.OrderByDescending(a => a.Salary);
         }
         if (sort == Sort.Company)
         {
-            advertisements = advertisements.OrderBy(a => a.Company.Name);
+            advertisementsList = advertisements.OrderBy(a => a.Company.Name);
         }
         if (sort == Sort.ViewCount)
         {
-            advertisements = advertisements.OrderByDescending(a => a.ViewCount);
+            advertisementsList = advertisements.OrderByDescending(a => a.ViewCount);
         }
         if (sort == Sort.Position)
         {
-            advertisements = advertisements.OrderByDescending(a => a.Title);
+            advertisementsList = advertisements.OrderBy(a => a.Title);
         }
 
-        var map = _mapper.Map<IEnumerable<AdvertisementListItemDto>>(advertisements);
-        return map;
+        return advertisementsList;
     }
 
-    public async Task<IEnumerable<AdvertisementListItemDto>> SortByArea(string area)
+    public async Task<IEnumerable<AdvertisementListItemDto>> SortByArea(IEnumerable<AdvertisementListItemDto> advertisements, string area)
     {
-        var advertisements = _repo.FindAll(a => a.IsDeleted == false && a.State == State.Accept, "AdvertisementAbilities", "AdvertisementAbilities.Ability", "JobDescriptions", "Reqruiments", "Company");
-        advertisements = advertisements.Where(a => a.City == area);
-        var map = _mapper.Map<IEnumerable<AdvertisementListItemDto>>(advertisements);
-        return map;
+        IEnumerable<AdvertisementListItemDto> advertisementsList = new List<AdvertisementListItemDto>();
+        advertisementsList = advertisements.Where(a => a.City == area);
+        return advertisementsList;
     }
 
-    public async Task<IEnumerable<AdvertisementListItemDto>> SortBySalary(Salary salary)
+    public async Task<IEnumerable<AdvertisementListItemDto>> SortBySalary(IEnumerable<AdvertisementListItemDto> advertisements, Salary? salary)
     {
-        var advertisements = _repo.FindAll(a => a.IsDeleted == false && a.State == State.Accept, "AdvertisementAbilities", "AdvertisementAbilities.Ability", "JobDescriptions", "Reqruiments", "Company");
+        IEnumerable<AdvertisementListItemDto> advertisementsList = new List<AdvertisementListItemDto>();
 
-        if(salary == Salary.ZeroFiveHundred)
+        if (salary == Salary.ZeroFiveHundred)
         {
-            advertisements = advertisements.Where(a => a.Salary > 0 && a.Salary <= 500);
+            advertisementsList = advertisements.Where(a => a.Salary > 0 && a.Salary <= 500);
         }
         if (salary == Salary.FiveHundredOneThousand)
         {
-            advertisements = advertisements.Where(a => a.Salary > 500 && a.Salary <= 1000);
+            advertisementsList = advertisements.Where(a => a.Salary > 500 && a.Salary <= 1000);
         }
         if (salary == Salary.OneThousandTwoThousand)
         {
-            advertisements = advertisements.Where(a => a.Salary > 1000 && a.Salary <= 2000);
+            advertisementsList = advertisements.Where(a => a.Salary > 1000 && a.Salary <= 2000);
         }
         if (salary == Salary.TwoThousandFiveThousand)
         {
-            advertisements = advertisements.Where(a => a.Salary > 2000 && a.Salary <= 5000);
+            advertisementsList = advertisements.Where(a => a.Salary > 2000 && a.Salary <= 5000);
         }
         if (salary == Salary.FiveThousandUpper)
         {
-            advertisements = advertisements.Where(a => a.Salary > 5000);
+            advertisementsList = advertisements.Where(a => a.Salary > 5000);
         }
 
-        var map = _mapper.Map<IEnumerable<AdvertisementListItemDto>>(advertisements);
-        return map;
+        return advertisementsList;
     }
 
     public async Task UpdateAddJobDescription(int id,List<string> descs)
@@ -496,6 +488,37 @@ public class AdvertisementService : IAdvertisementService
 
         advertisement.State = state;
         await _repo.SaveAsync();
+    }
+
+    public async Task<IEnumerable<AdvertisementListItemDto>> GetAllFilter(AdvertisementFilterDto filter)
+    {
+        var advertisements = _repo.FindAll(a => a.IsDeleted == false && a.State == State.Accept, "AdvertisementAbilities", "AdvertisementAbilities.Ability", "JobDescriptions", "Reqruiments", "Company");
+        var map = _mapper.Map<IEnumerable<AdvertisementListItemDto>>(advertisements);
+
+        var sortedAdvers = map;
+
+        if(filter.Sort != null)
+        {
+            sortedAdvers = await SortBy(sortedAdvers, filter.Sort); 
+        }
+        if(filter.Area != null)
+        {
+            sortedAdvers = await SortByArea(sortedAdvers, filter.Area);
+        }
+        if (filter.Date != null)
+        {
+            sortedAdvers = await SortByDate(sortedAdvers, filter.Date);
+        }
+        if (filter.Salary != null)
+        {
+            sortedAdvers = await SortBySalary(sortedAdvers, filter.Salary);
+        }
+        foreach (var adver in sortedAdvers)
+        {
+            adver.Company.Logo = _config["Jwt:Issuer"] + "wwwroot/" + adver.Company.Logo;
+        }
+
+        return sortedAdvers;
     }
 }
 

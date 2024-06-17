@@ -1,23 +1,26 @@
 ﻿<Properties StartupConfiguration="{2B17C4CB-5290-471D-A402-C8627FD2E3A0}|Default">
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="JobLink.Business/Services/Implements/AdvertisementService.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="JobLink.API/Controllers/AdvertisementsController.cs">
     <Files>
-      <File FileName="JobLink.Business/Services/Implements/AdvertisementService.cs" Line="210" Column="10" />
-      <File FileName="JobLink.Business/Services/Interfaces/IAdvertisementService.cs" />
-      <File FileName="JobLink.Core/Enums/DateFilter.cs" />
-      <File FileName="JobLink.API/Controllers/AdvertisementsController.cs" />
-      <File FileName="JobLink.Core/Enums/State.cs" />
-      <File FileName="JobLink.Core/Enums/AdvertisementStatus.cs" />
+      <File FileName="JobLink.Core/Enums/Salary.cs" Line="13" Column="1" />
+      <File FileName="JobLink.Business/Services/Interfaces/IAdvertisementService.cs" Line="31" Column="59" />
+      <File FileName="JobLink.API/Controllers/AdvertisementsController.cs" Line="154" Column="1" />
+      <File FileName="JobLink.Business/Services/Implements/AdvertisementService.cs" Line="197" Column="72" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="JobLink">
+            <Node name="JobLink.API" expanded="True">
+              <Node name="Controllers" expanded="True" />
+            </Node>
             <Node name="JobLink.Business" expanded="True">
+              <Node name="Dtos" expanded="True">
+                <Node name="AdvertisementDtos" expanded="True" />
+              </Node>
               <Node name="Services" expanded="True">
-                <Node name="Implements" expanded="True">
-                  <Node name="AdvertisementService.cs" selected="True" />
-                </Node>
+                <Node name="Implements" expanded="True" />
                 <Node name="Interfaces" expanded="True" />
               </Node>
             </Node>
@@ -30,10 +33,9 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.JobLink.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.JobLink.API PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
