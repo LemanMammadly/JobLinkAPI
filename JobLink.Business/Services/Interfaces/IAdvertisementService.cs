@@ -26,6 +26,7 @@ public interface IAdvertisementService
     Task SoftDeleteAsync(int id);
     Task ReverteSoftDeleteAsync(int id);
     Task DeleteAsync(int id);
+    Task<CountAdverDto> AdvertisementCount();
     Task<IEnumerable<AdvertisementListItemDto>> SortBy(IEnumerable<AdvertisementListItemDto> advertisements,Sort? sort);
     Task<IEnumerable<AdvertisementListItemDto>> SortBySalary(IEnumerable<AdvertisementListItemDto> advertisements,Salary? salary);
     Task<IEnumerable<AdvertisementListItemDto>> SortByArea(IEnumerable<AdvertisementListItemDto> advertisements, string area);

@@ -215,18 +215,20 @@ public class AdvertisementService : IAdvertisementService
 
         if(takeAll)
         {
-            advertisement = await _repo.GetByIdAsync(id,"AdvertisementAbilities", "AdvertisementAbilities.Ability", "JobDescriptions", "Reqruiments", "Company");
+            advertisement = await _repo.GetByIdAsync(id,"AdvertisementAbilities", "AdvertisementAbilities.Ability", "JobDescriptions", "Reqruiments", "Company", "Category");
             if (advertisement is null) throw new NotFoundException<Advertisement>();
         }
         else
         {
-            advertisement = await _repo.GetSingleAsync(a => a.IsDeleted == false && a.Id == id, "AdvertisementAbilities", "AdvertisementAbilities.Ability", "JobDescriptions", "Reqruiments", "Company");
+            advertisement = await _repo.GetSingleAsync(a => a.IsDeleted == false && a.Id == id, "AdvertisementAbilities", "AdvertisementAbilities.Ability", "JobDescriptions", "Reqruiments", "Company", "Category");
             if (advertisement is null) throw new NotFoundException<Advertisement>();
             advertisement.ViewCount++;
         }
-
         await _repo.SaveAsync();
-        return _mapper.Map<AdvertisementDetailItemDto>(advertisement);
+        var adver = _mapper.Map<AdvertisementDetailItemDto>(advertisement);
+        adver.AdvertisementCount = await AdvertisementCount();
+        return adver;
+
     }
 
     public async Task RejectAdvertisement(int id)
@@ -497,7 +499,7 @@ public class AdvertisementService : IAdvertisementService
 
         var sortedAdvers = map;
 
-        if(filter.Sort != null)
+        if(filter.Sort != null)  
         {
             sortedAdvers = await SortBy(sortedAdvers, filter.Sort); 
         }
@@ -519,6 +521,29 @@ public class AdvertisementService : IAdvertisementService
         }
 
         return sortedAdvers;
+    }
+
+    public async Task<CountAdverDto> AdvertisementCount()
+    {
+        var advertisements = _repo.FindAll(a => a.IsDeleted == false && a.State == State.Accept);
+        var countAdver = new CountAdverDto();
+        var now = DateTime.Now;
+
+        var monthStart = new DateTime(now.Year, now.Month, 1);
+
+        var weekStart = now.AddDays(-(int)now.DayOfWeek + (int)DayOfWeek.Monday);
+        if (weekStart < monthStart)
+        {
+            weekStart = monthStart;
+        }
+        var dayStart = DateTime.Today;
+
+        countAdver.Day = advertisements.Count(a => a.CreateDate > dayStart);
+        countAdver.Week = advertisements.Count(a => a.CreateDate > weekStart);
+        countAdver.Month = advertisements.Count(a => a.CreateDate > monthStart);
+
+        return countAdver;
+
     }
 }
 

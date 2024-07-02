@@ -14,6 +14,7 @@ public class AdvertisementMappingProfile:Profile
         CreateMap<Advertisement, AdvertisementDetailItemDto>().ReverseMap();
         CreateMap<Advertisement, AdvertisementInfoDto>().ReverseMap();
         CreateMap<AdvertisementAbilities, AdvertisementAbilityDto>().ReverseMap();
+        CreateMap<CountAdverDto, Advertisement>().ReverseMap();
     }
 }
 

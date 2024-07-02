@@ -12,6 +12,7 @@ public class CategoryMappingProfile:Profile
         CreateMap<UpdateCategoryDto, Category>().ReverseMap();
         CreateMap<CategoryListItemDto, Category>().ReverseMap();
         CreateMap<CategoryDetailItemDto, Category>().ReverseMap();
+        CreateMap<CategoryInfoDto, Category>().ReverseMap();
     }
 }
 

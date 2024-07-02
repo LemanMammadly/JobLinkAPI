@@ -140,40 +140,22 @@ namespace JobLink.API.Controllers
         }
 
         [HttpPost("[action]/{id}")]
-        public async Task<IActionResult> ChangeState(int id,State state)
+        public async Task<IActionResult> ChangeState(int id, State state)
         {
-            await _service.UpdateStateAsync(id,state);
+            await _service.UpdateStateAsync(id, state);
             return NoContent();
         }
-
-        //[HttpGet("[action]")]
-        //public async Task<IActionResult> SortByDate(IEnumerable<AdvertisementListItemDto> advertisements,[FromQuery] DateFilter date)
-        //{
-        //    return Ok(await _service.SortByDate(advertisements,date));
-        //}
-
-        //[HttpGet("[action]")]
-        //public async Task<IActionResult> SortBy(IEnumerable<AdvertisementListItemDto> advertisements, Sort sort)
-        //{
-        //    return Ok(await _service.SortBy(advertisements,sort));
-        //}
-
-        //[HttpGet("[action]")]
-        //public async Task<IActionResult> SortBySalary(IEnumerable<AdvertisementListItemDto> advertisements, Salary salary)
-        //{
-        //    return Ok(await _service.SortBySalary(advertisements,salary));
-        //}
-
-        //[HttpGet("[action]")]
-        //public async Task<IActionResult> SortByArea(IEnumerable<AdvertisementListItemDto> advertisements, string area)
-        //{
-        //    return Ok(await _service.SortByArea(advertisements,area));
-        //}
 
         [HttpGet("[action]")]
         public async Task<IActionResult> FilterAll([FromQuery]AdvertisementFilterDto filter)
         {
             return Ok(await _service.GetAllFilter(filter));
+        }
+
+        [HttpGet("[action]")]
+        public async Task<IActionResult> CountAdver()
+        {
+            return Ok(await _service.AdvertisementCount());
         }
     }
 }
